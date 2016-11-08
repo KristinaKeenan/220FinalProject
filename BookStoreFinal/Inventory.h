@@ -1,0 +1,8 @@
+//
+// Created by Mia Kimmich Mitchell on 11/8/2016.
+//
+
+#ifndef BOOKSTOREFINAL_INVENTORY_H
+#define BOOKSTOREFINAL_INVENTORY_H
+
+#endif //BOOKSTOREFINAL_INVENTORY_H
