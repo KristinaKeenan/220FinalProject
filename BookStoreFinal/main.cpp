@@ -1,5 +1,10 @@
 #include <iostream>
+#include <fstream>
+using namespace std;
 
+int main () {
+
+<<<<<<< Updated upstream
 
 int main() {
     bool toContinue = true;
@@ -112,3 +117,8 @@ int main() {
 
     }
 }
+=======
+    return 0;
+
+}
+>>>>>>> Stashed changes
