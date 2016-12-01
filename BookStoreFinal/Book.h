@@ -19,19 +19,10 @@ private:
     // how many books we need
     int want;
     //names of people who want the book
-    std::string* waitList;
-    //count of the number of valid items currently stored in the waitList
-    int currItemCount;
-    //size of the current waitList
-    int currCapacity;
+    Person* waitList;
 
     //pointer to next book
     Book* next;
-
-
-    //doubles capacity of waitList
-    void doubleCapacity();
-
 
 
 
@@ -75,8 +66,6 @@ public:
     Book* getNext();
 
     Book* setNext();
-
-
 
 
 };

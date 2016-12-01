@@ -7,8 +7,6 @@
 using namespace std;
 
 
-
-
 //constructor
 Inventory::Inventory() {
 
@@ -16,7 +14,6 @@ Inventory::Inventory() {
     this->bookListEnd = this->bookListStart;
 
 }
-
 
 
 //copy constructor

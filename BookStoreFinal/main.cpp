@@ -18,7 +18,6 @@ int main() {
 
         //create inventory
 
-
         if (command == "H") {
             std::cout << "HELP" << std::endl;
             std::cout << "H (help):Provide a summary of all available commands \n"
