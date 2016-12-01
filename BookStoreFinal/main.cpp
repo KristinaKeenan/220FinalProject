@@ -2,9 +2,6 @@
 #include <fstream>
 using namespace std;
 
-int main () {
-
-<<<<<<< Updated upstream
 
 int main() {
     bool toContinue = true;
@@ -20,6 +17,7 @@ int main() {
         std::cout << "you typed: " << command << std::endl;
 
         //create inventory
+
 
         if (command == "H") {
             std::cout << "HELP" << std::endl;
@@ -109,7 +107,7 @@ int main() {
 
         } else if (command == "Q") {
             std::cout << "QUIT" << std::endl;
-            toContinue= false;
+            toContinue = false;
         } else {
             std::cout << "try again" << std::endl;
 //            toContinue = false;
@@ -117,8 +115,3 @@ int main() {
 
     }
 }
-=======
-    return 0;
-
-}
->>>>>>> Stashed changes
