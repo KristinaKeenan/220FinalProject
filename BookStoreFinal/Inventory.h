@@ -11,11 +11,17 @@
 using namespace std;
 
 
-class Inventory{
+class Inventory {
 
 
 private:
-    Book* bookList;
+    //pointer to first book
+    Book* bookListStart;
+
+    //pointer to last book
+    Book* bookListEnd;
+
+
 
 
 
@@ -24,6 +30,16 @@ public:
 
     //constructor
     Inventory();
+
+
+    //copy constructor
+    Inventory(const Inventory& inventoryToCopy);
+
+
+
+    //assignment operator
+    Inventory& operator=(const Inventory& inventoryToAssign);
+
 
     //destructor
     ~Inventory();
@@ -35,18 +51,42 @@ public:
 
 
     //I command
-    void titleInfo(std::string bookTitle);
+    void titleInfo(Book* book);
 
     //L command
     void printBookList();
 
     //A command
-    void addBook(std::string bookTitle);
+    void add(std::string bookToAdd);
+
+
+    //M command
+    void modify(Book* bookToModify);
+
+    //S command (sell)
+    void sell(Book* bookToSell);
+
 
 
     //O command
-    void createOrder();
+    //file name?
+    void createOrder(order file);
 
+
+    //D command (delivery)
+    //creating purchase order based on comparison of have and want values
+    //file name?
+    void delivery(order file);
+
+
+    //R command
+    //file name?
+    //return books if we have more than needed
+    void returnBooks(invoice file);
+
+
+    //Q command
+    void quit();
 
 
 
