@@ -4,6 +4,7 @@
 
 #include "Inventory.h"
 #include <iostream>
+
 using namespace std;
 
 
@@ -79,17 +80,23 @@ void Inventory::modify(Book* bookToModify){
 void Inventory::sell(Book* bookToSell){
 
 
-
 }
 
 
 
 //O command
 //file name?
-void Inventory::createOrder(order file){
-
-
-
+void Inventory::createOrder(std::string orderFile){
+    std::ofstream outf(orderFile);
+    while (current.getNext() != nullptr){
+        if (outf){
+            outf << title << "," << (want - have) << std::endl;
+        }
+        else {
+            std::cerr << "Could not write to file." << std::endl;
+        }
+        current = current.getNext();
+    }
 }
 
 
@@ -106,8 +113,18 @@ void Inventory::delivery(order file){
 //R command
 //file name?
 //return books if we have more than needed
-void Inventory::returnBooks(invoice file){
-
+void Inventory::returnBooks(invoiceFile){
+    std::ofstream outf(invoiceFile);
+    while(current.getNext() != nullptr){
+        if (outf){
+            outf << title << "," << (have - want) << std::endl;
+            have = want;
+        }
+        else{
+            std::cerr << "Could not write to file." << std::endl;
+        }
+        current = current.getNext();
+    }
 
 
 }

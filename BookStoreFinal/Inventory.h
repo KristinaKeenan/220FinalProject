@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 using namespace std;
 
 
@@ -70,19 +71,19 @@ public:
 
     //O command
     //file name?
-    void createOrder(order file);
+    void createOrder(std::string orderFile);
 
 
     //D command (delivery)
     //creating purchase order based on comparison of have and want values
     //file name?
-    void delivery(order file);
+    void delivery(std::string orderFile);
 
 
     //R command
     //file name?
     //return books if we have more than needed
-    void returnBooks(invoice file);
+    void returnBooks(std::String invoiceFile);
 
 
     //Q command
