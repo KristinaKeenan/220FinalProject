@@ -48,7 +48,14 @@ void Inventory::listInventory(){
 
 
 //I command
+//inquiry
+//print out all info about book
 void Inventory::titleInfo(Book* book){
+    std::cout<<"Title: "+book.getTitle()<<std::endl;
+    std::cout<<"Have: "+book.getHave()<<std::endl;
+    std::cout<<"Want: "+book.getWant()<<std::endl;
+    std::cout<<"Wait List: "+book.printWaitList()<<std::endl;
+
 
 
 
@@ -57,11 +64,21 @@ void Inventory::titleInfo(Book* book){
 //L command
 void Inventory::printBookList(){
 
+    std::cout<<"Book List: "<<std::endl;
+
+    Book* temp = bookListStart;
+
+    while(temp!=nullptr){
+        std::cout<<temp.getTitle<<std::endl;
+        temp.getNext();
+    }
+
 
 
 }
 
 //A command
+//kk
 void Inventory::add(std::string bookToAdd){
 
 
