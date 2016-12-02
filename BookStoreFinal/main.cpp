@@ -4,6 +4,7 @@ using namespace std;
 
 
 int main() {
+
     bool toContinue = true;
 
     while (toContinue != false) {

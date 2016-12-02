@@ -3,6 +3,7 @@
 //
 
 #include "Book.h"
+#include "WaitList.h"
 //ask for how many you have and want when constructing
 Book::Book(std::string title, int have, int want){
     this->title = title;
@@ -53,22 +54,30 @@ std::string Book::getTitle(){
     return title;
 }
 
+
 std::string Book::setTitle(std::string newTitle){
     title = newTitle;
 }
 
+
+
 void Book::addPersonWaitList(std::string personName){
+    waitList->add(personName);
+
 }
 
 //remove person from beginning of waitlist
 void Book::removePersonWaitList(){
+    waitList->removeFront();
 
 }
 
 //return the waitlist for the title
 std::string* Book::getWaitList(){
-
+    waitList->printWaitList();
 }
+
+
 
 Book* Book::getNext(){
     return next;
