@@ -19,7 +19,7 @@ private:
     // how many books we need
     int want;
     //names of people who want the book
-    Person* waitList;
+    WaitList* waitList;
 
     //pointer to next book
     Book* next;

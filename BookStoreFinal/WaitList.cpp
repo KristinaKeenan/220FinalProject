@@ -4,29 +4,27 @@
 
 #include "WaitList.h"
 
-Person::Person(int initialCapacity){
+WaitList::WaitList(int initialCapacity){
     this->array = new std::string[initialCapacity];
     this->currCapacity = initialCapacity;
     this->currItemCount = 0;
 
 }
 
-void Person::add(int itemToAdd){
+void WaitList::add(std::string personToAdd){
 
     int tempInt = currItemCount;
 
     if(currItemCount == currCapacity) {
         doubleCapacity();
     }
-    array[tempInt] = itemToAdd;
-
-
+    array[tempInt] = personToAdd;
 
     currItemCount++;
 
 }
 
-std::string Person::removeFront(){
+std::string WaitList::removeFront(){
 
     tempString = array[0];
 
@@ -34,8 +32,6 @@ std::string Person::removeFront(){
 
     for(int i = 1; i < currItemCount; i++){
         array[i-1] = array[i];
-
-
     }
 
     return tempString;
@@ -46,7 +42,7 @@ std::string Person::removeFront(){
 
 }
 
-void Person::doubleCapacity(){
+void WaitList::doubleCapacity(){
 
     int* tempArray = new int[currCapacity*2];
 
@@ -64,6 +60,17 @@ void Person::doubleCapacity(){
 
 
     this->currCapacity *= 2;
+
+
+}
+
+std::string WaitList::printWaitList(){
+    std::string arrayString;
+    for (int i = 0; i< currItemCount; i++){
+               arrayString = arrayString + array[i];
+    }
+
+    std::cout<< arrayString<< std::endl;
 
 
 }

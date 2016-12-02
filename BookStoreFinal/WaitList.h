@@ -6,7 +6,7 @@
 #define BOOKSTOREFINAL_WAITLIST_H
 
 
-class Person {
+class WaitList {
 
 
 private:
@@ -24,17 +24,18 @@ private:
 public:
 
     //creates an arrayList with a specific initial capacity (defaults to size 5)
-    Person(int initialCapacity = 5);
+    WaitList(int initialCapacity = 5);
 
 
     //Destructor
-    ~Person();
+    ~WaitList();
 
     //appends the new item to the end of the arrayList
-    void add(int itemToAdd);
+    void add(std::string personToAdd);
 
     std::string removeFront();
 
+    std::string printWaitList();
 
 
 
