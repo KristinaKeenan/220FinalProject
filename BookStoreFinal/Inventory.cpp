@@ -51,12 +51,11 @@ void Inventory::listInventory(){
 //inquiry
 //print out all info about book
 void Inventory::titleInfo(Book* book){
-    std::cout<<"Title: "+book.getTitle()<<std::endl;
-    std::cout<<"Have: "+book.getHave()<<std::endl;
-    std::cout<<"Want: "+book.getWant()<<std::endl;
-    std::cout<<"Wait List: "+book.printWaitList()<<std::endl;
-
-
+    std::cout<<"Title: "+book->getTitle()<<std::endl;
+    std::cout<<"Have: "+book->getHave()<<std::endl;
+    std::cout<<"Want: "+book->getWant()<<std::endl;
+    std::cout<<"Wait List: "<<std::endl;
+    book->getWaitList();
 
 
 }
@@ -69,8 +68,8 @@ void Inventory::printBookList(){
     Book* temp = bookListStart;
 
     while(temp!=nullptr){
-        std::cout<<temp.getTitle<<std::endl;
-        temp.getNext();
+        std::cout<<temp->getTitle<<std::endl;
+        temp->getNext();
     }
 
 
@@ -88,14 +87,44 @@ void Inventory::add(std::string bookToAdd){
 
 //M command
 void Inventory::modify(Book* bookToModify){
+    Book *currNode = bookListStart;
 
+    while (currNode->getTitle()!= bookToModify->getTitle()){
+        currNode->getNext();
+    }
+    //display the want and have values.
+    std::cout<< "The want value: " << bookToModify->getWant()<< std::endl;
+    std::cout<< "The get value: " << bookToModify->getHave()<< std::endl;
 
+    //set new want value
+    int newWantValue;
+    std::cout << "Enter new want value: ";
+    std::cin >> newWantValue;
+    //while less than 0 AND not a int
+    while (newWantValue < 0) {
+        std::cout << "Invalid. Enter valid value: ";
+        std::cin >> newWantValue;
+        newWantValue = newWantValue;
+    }
+
+    currNode->setWant(newWantValue);
 
 }
 
 //S command (sell)
 void Inventory::sell(Book* bookToSell){
 
+    //Decrease the count for the specified title by 1.
+    // If the title doesn't exist yet, it should be added.
+    // If the title is sold out (or didn't exist),
+    // prompt the user for the buyer's name and enter them
+    // on the wait list for that title.
+
+    Book *currNode = bookListStart;
+
+    while (currNode->getTitle()!= bookToSell->getTitle()){
+        currNode->getNext();
+    }
 
 }
 
@@ -117,11 +146,11 @@ void Inventory::createOrder(std::string orderFile){
 }
 
 
+
 //D command (delivery)
 //creating purchase order based on comparison of have and want values
 //file name?
 void Inventory::delivery(order file){
-
 
 
 }

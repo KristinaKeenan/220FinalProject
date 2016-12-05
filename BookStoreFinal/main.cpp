@@ -5,6 +5,8 @@ using namespace std;
 
 int main() {
 
+
+
     bool toContinue = true;
 
     while (toContinue != false) {
@@ -62,20 +64,6 @@ int main() {
             std::getline(std::cin, book);
             std::cout << "Book info for: " << book << std::endl;
 
-            //display the want and have values.
-
-            int myInt;
-            std::cout << "Enter new want value: ";
-            std::cin >> myInt;
-
-
-            //while less than 0 AND not a int
-            while (myInt < 0) {
-                std::cout << "Invalid. Enter valid value: ";
-                std::cin >> myInt;
-                myInt = myInt;
-            }
-            std::cout << "You entered: " << myInt << std::endl;
 
         } else if (command == "S") {
             std::cout << "SELL" << std::endl;
@@ -108,6 +96,7 @@ int main() {
         } else if (command == "Q") {
             std::cout << "QUIT" << std::endl;
             toContinue = false;
+
         } else {
             std::cout << "try again" << std::endl;
 //            toContinue = false;
