@@ -4,11 +4,28 @@
 
 #include "WaitList.h"
 
-WaitList::WaitList(int initialCapacity){
-    this->array = new std::string[initialCapacity];
-    this->currCapacity = initialCapacity;
+WaitList::WaitList(){
+    this->currCapacity = 5;
     this->currItemCount = 0;
+    this->array = new std::string[currCapacity];
 
+
+}
+
+WaitList::ArrayList(const WaitList& stackToCopy){
+    this->currCapacity = stackToCopy.currCapacity;
+    this->currItemCont = stackToCopy.currItemCount;
+
+    //to make a new array and then put all of the data in it
+    this->array= new std::string[currCapacity];
+    for (int i = 0; i< currItemCount; i++){
+        this->array[i]=stackToCopy.array[i];
+    }
+}
+
+
+WaitList::~WaitList(){
+    delete [] array;
 }
 
 void WaitList::add(std::string personToAdd){

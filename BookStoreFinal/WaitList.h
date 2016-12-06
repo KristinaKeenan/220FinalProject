@@ -24,8 +24,9 @@ private:
 public:
 
     //creates an arrayList with a specific initial capacity (defaults to size 5)
-    WaitList(int initialCapacity = 5);
+    WaitList();
 
+    WaitList(const WaitList& other);
 
     //Destructor
     ~WaitList();

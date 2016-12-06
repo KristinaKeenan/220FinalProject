@@ -14,8 +14,6 @@ using namespace std;
 
 
 class Inventory {
-
-
 private:
     //pointer to first book
     Book* bookListStart;
@@ -24,27 +22,23 @@ private:
     Book* bookListEnd;
 
 
-
-
-
-
 public:
 
     //constructor
     Inventory();
 
 
-    //copy constructor
-    Inventory(const Inventory& inventoryToCopy);
+//    //copy constructor
+//    Inventory(const Inventory& inventoryToCopy);
 
 
 
-    //assignment operator
-    Inventory& operator=(const Inventory& inventoryToAssign);
-
-
-    //destructor
-    ~Inventory();
+//    //assignment operator
+//    Inventory& operator=(const Inventory& inventoryToAssign);
+//
+//
+//    //destructor
+//    ~Inventory();
 
 
     //list inventory alphabetically
@@ -65,26 +59,26 @@ public:
     //M command
     void modify(Book* bookToModify);
 
-    //S command (sell)
-    void sell(Book* bookToSell);
+//    //S command (sell)
+//    void sell(Book* bookToSell);
+//
 
 
-
-    //O command
-    //file name?
-    void createOrder(std::string orderFile);
-
-
-    //D command (delivery)
-    //creating purchase order based on comparison of have and want values
-    //file name?
-    void delivery(std::string orderFile);
-
-
-    //R command
-    //file name?
-    //return books if we have more than needed
-    void returnBooks(std::String invoiceFile);
+//    //O command
+//    //file name?
+//    void createOrder(std::string orderFile);
+//
+//
+//    //D command (delivery)
+//    //creating purchase order based on comparison of have and want values
+//    //file name?
+//    void delivery(std::string orderFile);
+//
+//
+//    //R command
+//    //file name?
+//    //return books if we have more than needed
+//    void returnBooks(std::string invoiceFile);
 
 
     //Q command

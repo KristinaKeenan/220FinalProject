@@ -13,6 +13,7 @@ Book::Book(std::string title, int have, int want){
     next = nullptr;
 }
 
+
 //copy constructor
 Book::Book(const Book& bookToCopy){
     this->title = bookToCopy.title;
@@ -29,6 +30,7 @@ Book& Book::operator=(const Book& bookToAssign){
 
 //destructor
 Book::~Book(){
+    //delete waitlist
 
 
 }

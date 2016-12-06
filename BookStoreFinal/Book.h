@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
+#include "WaitList.h"
 using namespace std;
 
 class Book {
@@ -29,7 +30,7 @@ private:
 public:
 
     //ask for how many you have and want when constructing
-    Book();
+    Book(std::string title, int have, int want);
 
     //copy constructor
     Book(const Book& bookToCopy);
@@ -65,7 +66,7 @@ public:
 
     Book* getNext();
 
-    Book* setNext();
+    Book* setNext(Book* newNext);
 
 
 };

@@ -16,27 +16,56 @@ Inventory::Inventory() {
 
 }
 
+//
+////copy constructor
+//Inventory::Inventory(const Inventory& inventoryToCopy) {
+//
+//    if (bookListStart != nullptr) {
+//
+//
+////
+////    //intalize the start of list
+////    this-> bookListStart = nullptr;
+//
+//        if (inventoryToCopy.bookListStart != nullptr) {
+//            std::string bookTitle = inventoryToCopy.bookListStart->getTitle();
+//            this->bookListStart = new Book(bookTitle, 0, 0);
+//
+//            Book *currNode = inventoryToCopy.bookListStart;
+//            Book *copyNode = this->bookListStart;
+//
+//            currNode = currNode->getNext();
+//
+//            while (currNode != nullptr) {
+//                std::string title = currNode->getTitle();
+//                Book *myNode = new Book(title, 0, 0);
+//
+//                copyNode->setNext(myNode);
+//                currNode = currNode->getNext();
+//            }
+//        }
+//    }
+//}
 
-//copy constructor
-Inventory::Inventory(const Inventory& inventoryToCopy){
 
-   //TO DO
-}
+////assignment operator
+//Inventory& Inventory::operator=(const Inventory& inventoryToAssign){
+//
+//
+//
+//
+//}
 
-
-//assignment operator
-Inventory& Inventory::operator=(const Inventory& inventoryToAssign){
-
-
-
-}
-
-
-//destructor
-~Inventory::Inventory() {
-
-
-}
+//
+////destructor
+//Inventory::~Inventory() {
+//    while (bookListStart != nullptr){
+//        Book* temp = bookListStart;
+//        bookListStart= bookListStart->getNext();
+//        delete temp;
+//        temp= nullptr;
+//    }
+//}
 
 
 //list inventory alphabetically
@@ -68,21 +97,61 @@ void Inventory::printBookList(){
     Book* temp = bookListStart;
 
     while(temp!=nullptr){
-        std::cout<<temp->getTitle<<std::endl;
+        std::cout<< temp->getTitle()<<std::endl;
         temp->getNext();
     }
-
-
-
+    //List the Information for the entire
+    // inventory (in alphabetical order by title)
 }
+
+
 
 //A command
 //kk
 void Inventory::add(std::string bookToAdd){
+    //A command
 
+        Book* temp = bookListStart;
 
+        Book* temp2 = bookListStart;
+
+        bool added = false;
+
+        while(temp!=nullptr || !added){
+
+            if(temp->getTitle()==bookToAdd){
+
+                std::cout<<"Book already exists."<<std::endl;
+
+            }else if(temp->getTitle()<=bookToAdd){
+
+                temp2 = temp;
+
+                temp = temp->getNext();
+            }
+            else if(temp->getTitle()>=bookToAdd){
+                int want;
+                int have;
+                std::cout<<"How many books do you have?"<<std::endl;
+                cin>>have;
+
+                std::cout<<"How many books do you want?"<<std::endl;
+                cin>>want;
+
+                Book* newBook = new Book(bookToAdd,have,want);
+                temp2->setNext(newBook);
+                newBook->setNext(temp);
+
+                added = true;
+
+            }
+
+        }
 
 }
+
+
+
 
 
 //M command
@@ -111,69 +180,69 @@ void Inventory::modify(Book* bookToModify){
 
 }
 
-//S command (sell)
-void Inventory::sell(Book* bookToSell){
+////S command (sell)
+//void Inventory::sell(Book* bookToSell){
+//
+//    //Decrease the count for the specified title by 1.
+//    // If the title doesn't exist yet, it should be added.
+//    // If the title is sold out (or didn't exist),
+//    // prompt the user for the buyer's name and enter them
+//    // on the wait list for that title.
+//
+//    Book *currNode = bookListStart;
+//
+//    while (currNode->getTitle()!= bookToSell->getTitle()){
+//        currNode->getNext();
+//    }
+//
+//}
 
-    //Decrease the count for the specified title by 1.
-    // If the title doesn't exist yet, it should be added.
-    // If the title is sold out (or didn't exist),
-    // prompt the user for the buyer's name and enter them
-    // on the wait list for that title.
-
-    Book *currNode = bookListStart;
-
-    while (currNode->getTitle()!= bookToSell->getTitle()){
-        currNode->getNext();
-    }
-
-}
-
-
-
-//O command
-//file name?
-void Inventory::createOrder(std::string orderFile){
-    std::ofstream outf(orderFile);
-    while (current.getNext() != nullptr){
-        if (outf){
-            outf << title << "," << (want - have) << std::endl;
-        }
-        else {
-            std::cerr << "Could not write to file." << std::endl;
-        }
-        current = current.getNext();
-    }
-}
-
-
-
-//D command (delivery)
-//creating purchase order based on comparison of have and want values
-//file name?
-void Inventory::delivery(order file){
-
-
-}
-
-
-//R command
-//file name?
-//return books if we have more than needed
-void Inventory::returnBooks(invoiceFile){
-    std::ofstream outf(invoiceFile);
-    while(current.getNext() != nullptr){
-        if (outf){
-            outf << title << "," << (have - want) << std::endl;
-            have = want;
-        }
-        else{
-            std::cerr << "Could not write to file." << std::endl;
-        }
-        current = current.getNext();
-    }
-
-
-}
+//
+//
+////O command
+////file name?
+//void Inventory::createOrder(std::string orderFile){
+//    std::ofstream outf(orderFile);
+//    while (current.getNext() != nullptr){
+//        if (outf){
+//            outf << title << "," << (want - have) << std::endl;
+//        }
+//        else {
+//            std::cerr << "Could not write to file." << std::endl;
+//        }
+//        current = current.getNext();
+//    }
+//}
+//
+//
+//
+////D command (delivery)
+////creating purchase order based on comparison of have and want values
+////file name?
+//void Inventory::delivery(order file){
+//
+//
+//}
+//
+//
+////R command
+////file name?
+////return books if we have more than needed
+//void Inventory::returnBooks(invoiceFile){
+//    std::ofstream outf(invoiceFile);
+//    while(current.getNext() != nullptr){
+//        if (outf){
+//            outf << title << "," << (have - want) << std::endl;
+//            have = want;
+//        }
+//        else{
+//            std::cerr << "Could not write to file." << std::endl;
+//        }
+//        current = current.getNext();
+//    }
+//
+//
+//}
 
 
 void Inventory::quit(){
