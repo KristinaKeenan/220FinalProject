@@ -29,25 +29,21 @@ public:
 
 
 //    //copy constructor
-//    Inventory(const Inventory& inventoryToCopy);
+//Inventory::Inventory(const Inventory& inventoryToCopy) {
 
 
 
 //    //assignment operator
-//    Inventory& operator=(const Inventory& inventoryToAssign);
-//
-//
-//    //destructor
-//    ~Inventory();
+    Inventory& operator=(const Inventory& inventoryToAssign);
 
 
-    //list inventory alphabetically
-    void listInventory();
+    //destructor
+    ~Inventory();
 
 
 
     //I command
-    void titleInfo(Book* book);
+    void titleInfo(std::string bookTitle);
 
     //L command
     void printBookList();
@@ -57,28 +53,28 @@ public:
 
 
     //M command
-    void modify(Book* bookToModify);
+    void modify(std::string bookToModify);
 
-//    //S command (sell)
-//    void sell(Book* bookToSell);
-//
+    //S command (sell)
+    void sell(std::string bookToSell);
+
 
 
 //    //O command
 //    //file name?
-//    void createOrder(std::string orderFile);
+    void createOrder(std::string orderFile);
 //
 //
 //    //D command (delivery)
 //    //creating purchase order based on comparison of have and want values
 //    //file name?
-//    void delivery(std::string orderFile);
+    void delivery(std::string orderFile);
 //
 //
 //    //R command
 //    //file name?
 //    //return books if we have more than needed
-//    void returnBooks(std::string invoiceFile);
+    void returnBooks(std::string invoiceFile);
 
 
     //Q command

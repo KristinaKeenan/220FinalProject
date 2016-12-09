@@ -48,46 +48,68 @@ Inventory::Inventory() {
 //}
 
 
-////assignment operator
-//Inventory& Inventory::operator=(const Inventory& inventoryToAssign){
-//
-//
-//
-//
-//}
+//assignment operator
+Inventory& Inventory::operator=(const Inventory& inventoryToAssign){
+    if(this != &inventoryToAssign){
+        while(bookListStart!=nullptr){
+            Book* temp = bookListStart;
+            bookListStart = bookListStart->getNext();
+            delete temp;
+            temp = nullptr;
+        }
+    }
 
-//
-////destructor
-//Inventory::~Inventory() {
-//    while (bookListStart != nullptr){
-//        Book* temp = bookListStart;
-//        bookListStart= bookListStart->getNext();
-//        delete temp;
-//        temp= nullptr;
-//    }
-//}
+    if(inventoryToAssign.bookListStart==nullptr){
+        this->bookListStart = nullptr;
+    }
+    else{
+        bookListStart = new Book(inventoryToAssign.bookListStart->getTitle(),inventoryToAssign.bookListStart->getHave(),inventoryToAssign.bookListStart->getWant());
+        Book* currBook = this->bookListStart;
+        Book* bookToCopy = inventoryToAssign.bookListStart;
+        while(bookToCopy->getNext()!=nullptr){
+            bookToCopy-bookToCopy->getNext();
+            currBook->setNext(new Book(bookToCopy->getTitle(),bookToCopy->getHave(),bookToCopy->getWant()));
+            currBook = currBook->getNext();
+        }
+    }
+
+return *this;
+
+}
 
 
-//list inventory alphabetically
-void Inventory::listInventory(){
-
-
+//destructor
+Inventory::~Inventory() {
+    while (bookListStart != nullptr){
+        Book* temp = bookListStart;
+        bookListStart= bookListStart->getNext();
+        delete temp;
+        temp= nullptr;
+    }
 }
 
 
 
 //I command
-//inquiry
-//print out all info about book
-void Inventory::titleInfo(Book* book){
-    std::cout<<"Title: "+book->getTitle()<<std::endl;
-    std::cout<<"Have: "+book->getHave()<<std::endl;
-    std::cout<<"Want: "+book->getWant()<<std::endl;
-    std::cout<<"Wait List: "<<std::endl;
-    book->getWaitList();
+//Inquiry
+void Inventory::titleInfo(std::string book){
+    std::cout<<"title info stuff"<< std::endl;
+    Book* temp = bookListStart;
+    while (temp->getTitle() != book){
+        temp->getNext();
+    }
 
+    std::cout<<"Title: "<< temp->getTitle()<< std::endl;
+    std::cout<< "Want Value: "<< temp->getHave()<< std::endl;
+    std::cout<< "Have Value: "<< temp->getWant()<< std::endl;
+
+
+
+    std::cout<< "WaitList"<< temp->getWaitList()<< std::endl;
 
 }
+
+
 
 //L command
 void Inventory::printBookList(){
@@ -97,11 +119,18 @@ void Inventory::printBookList(){
     Book* temp = bookListStart;
 
     while(temp!=nullptr){
-        std::cout<< temp->getTitle()<<std::endl;
-        temp->getNext();
+        if (temp->getHave()== 0){
+            std::cout<< temp->getTitle()<< " SOLD OUT" <<std::endl;
+            temp=temp->getNext();
+
+        }else{
+            std::cout<< "Title: "<<temp->getTitle()<< " Have Value: "<< temp->getHave()<< " Want Value: " << temp->getWant()<<std::endl;
+
+            temp = temp->getNext();
+        }
+
     }
-    //List the Information for the entire
-    // inventory (in alphabetical order by title)
+
 }
 
 
@@ -109,45 +138,66 @@ void Inventory::printBookList(){
 //A command
 //kk
 void Inventory::add(std::string bookToAdd){
-    //A command
-
         Book* temp = bookListStart;
-
         Book* temp2 = bookListStart;
 
-        bool added = false;
+        bool notAdded = true;
+        if (bookListStart== nullptr){
+            int want;
+            int have;
+            std::cout<<"How many books do you have?"<<std::endl;
+            cin>>have;
 
-        while(temp!=nullptr || !added){
+            std::cout<<"How many books do you want?"<<std::endl;
 
-            if(temp->getTitle()==bookToAdd){
 
-                std::cout<<"Book already exists."<<std::endl;
 
-            }else if(temp->getTitle()<=bookToAdd){
+            cin>>want;
+            Book* newBook = new Book(bookToAdd,have,want);
+            bookListStart = newBook;
+            notAdded = false;
+        } else {
+            int want;
+            int have;
+            std::cout << "How many books do you have?" << std::endl;
+            cin >> have;
 
-                temp2 = temp;
+            std::cout << "How many books do you want?" << std::endl;
+            cin >> want;
+            Book *newBook = new Book(bookToAdd, have, want);
 
-                temp = temp->getNext();
+            while (temp != nullptr && notAdded) {
+
+                if (temp->getTitle() == bookToAdd) {
+
+                    std::cout << "Book already exists." << std::endl;
+
+                    //delete book
+
+
+                    notAdded = false;
+
+                } else if (temp->getTitle() < bookToAdd) {
+                    temp2=temp;
+
+                    if(temp->getNext()==nullptr){
+                        temp->setNext(newBook);
+                    }else {
+                        temp = temp->getNext();
+                    }
+//                    notAdded= false;
+                } else if (temp->getTitle() > bookToAdd) {
+
+                    temp2->setNext(newBook);
+
+                    newBook->setNext(temp);
+                    notAdded = false;
+                }
+                else{
+                    std::cout<<"ERROR"<<std::endl;
+                }
             }
-            else if(temp->getTitle()>=bookToAdd){
-                int want;
-                int have;
-                std::cout<<"How many books do you have?"<<std::endl;
-                cin>>have;
-
-                std::cout<<"How many books do you want?"<<std::endl;
-                cin>>want;
-
-                Book* newBook = new Book(bookToAdd,have,want);
-                temp2->setNext(newBook);
-                newBook->setNext(temp);
-
-                added = true;
-
-            }
-
         }
-
 }
 
 
@@ -155,94 +205,189 @@ void Inventory::add(std::string bookToAdd){
 
 
 //M command
-void Inventory::modify(Book* bookToModify){
+void Inventory::modify(std::string bookToModify){
     Book *currNode = bookListStart;
 
-    while (currNode->getTitle()!= bookToModify->getTitle()){
+    while (currNode->getTitle()!= bookToModify){
         currNode->getNext();
     }
     //display the want and have values.
-    std::cout<< "The want value: " << bookToModify->getWant()<< std::endl;
-    std::cout<< "The get value: " << bookToModify->getHave()<< std::endl;
+    std::cout<< "Title: "<< currNode->getTitle()<< std::endl;
+    std::cout<< "The want value: " << currNode->getWant()<< std::endl;
+    std::cout<< "The get value: " << currNode->getHave()<< std::endl;
 
     //set new want value
     int newWantValue;
     std::cout << "Enter new want value: ";
     std::cin >> newWantValue;
     //while less than 0 AND not a int
-    while (newWantValue < 0) {
+
+    while (newWantValue < 0 || std::cin.fail()) {
         std::cout << "Invalid. Enter valid value: ";
         std::cin >> newWantValue;
         newWantValue = newWantValue;
+        std::cin.clear();
+
     }
 
     currNode->setWant(newWantValue);
 
 }
 
-////S command (sell)
-//void Inventory::sell(Book* bookToSell){
-//
-//    //Decrease the count for the specified title by 1.
-//    // If the title doesn't exist yet, it should be added.
-//    // If the title is sold out (or didn't exist),
-//    // prompt the user for the buyer's name and enter them
-//    // on the wait list for that title.
-//
-//    Book *currNode = bookListStart;
-//
-//    while (currNode->getTitle()!= bookToSell->getTitle()){
-//        currNode->getNext();
-//    }
-//
-//}
+//S command (sell)
+void Inventory::sell(std::string bookToSell){
 
+    std::cout<< "SELL"<<std::endl;
+
+
+    //Decrease the count for the specified title by 1.
+    // If the title doesn't exist yet, it should be added.
+    // If the title is sold out (or didn't exist),
+    // prompt the user for the buyer's name and enter them
+    // on the wait list for that title.
+
+
+    //to get the amount of books in the inventory
+    Book *counterNode = bookListStart;
+    bool foundBook = false;
+    int counter =0;
+    while (counterNode != nullptr){
+        if (counterNode->getTitle()== bookToSell){
+            foundBook= true;
+            counter++;
+            counterNode = counterNode->getNext();
+        }else {
+            counter++;
+            counterNode = counterNode->getNext();
+        }
+        }
+
+    if (foundBook== true) {
+        //to get the book
+        int tempCounter = 0;
+        Book *currNode = bookListStart;
+
+
+        while (currNode->getTitle() != bookToSell) {
+            tempCounter++;
+            currNode->getNext();
+        }
+
+        if (currNode->getHave() == 0) {
+            std::cout << "This title is sold out. Add user to waitlist" << std::endl;
+
+            //add user to waitlist
+            std::string user;
+            std::cout << "Enter name to add: ";
+            std::cin >> user;
+            currNode->addPersonWaitList(user);
+
+            std::cout<<currNode->getWaitList()<< std::endl;
+
+
+        } else {
+            //if it does find the book, then decrease the want have value
+            //and book does exist
+            //and boook doesn't have a waitlist
+            currNode->setHave(currNode->getHave() - 1);
+            if (currNode->getHave() == 0) {
+                std::cout << "Title found. Have value decreased by 1. SOLD OUT" << std::endl;
+            } else {
+                std::cout << "Title found. Have value decreased by 1" << std::endl;
+            }
+        }
+    } else{
+
+        // if the book doesn't exist yet
+
+        std::cout << "Book doesn't exist yet. Adding to Inventory...." << std::endl;
+        std::cout << "Set have value to 0 and want value to 1." << std::endl;
+        add(bookToSell);
+        }
+
+    }
+
+
+
+
+
+
+//O command
+//file name?
+void Inventory::createOrder(std::string InventoryList){
+
+    std::ofstream outf(InventoryList);
+    if(outf.is_open()){
+
+        Book *currNode = bookListStart;
+        while (currNode != nullptr) {
+            if ((currNode->getWant()) > (currNode->getHave())) {               // <- new code
+                outf << currNode->getTitle() << "*" << (currNode->getWant() - currNode->getHave()) << "\t";
+                currNode = currNode->getNext();
+            }
+        }
+        outf.close();
+    }
+    else {
+        std::cout<< "can't write to file."<< std::endl;
+    }
+}
+
+
+
+void Inventory::delivery(std::string InventoryList){
+//    int j = 0;
+//    std::string fullDel;
+//    std::ifstream myFile (InventoryList);
+//    if(myFile.is_open()){
+//        if (getline(myFile, fullDel)) {
+//            for (int i = 0; i < fullDel.length(); i++) {
+//                if (fullDel[i]== char("\t")){
+//
+//                    std::string currentString = fullDel[j:(i-1)];
 //
 //
-////O command
-////file name?
-//void Inventory::createOrder(std::string orderFile){
-//    std::ofstream outf(orderFile);
-//    while (current.getNext() != nullptr){
-//        if (outf){
-//            outf << title << "," << (want - have) << std::endl;
+//                }
+//
+//
+//            }
+//
 //        }
-//        else {
-//            std::cerr << "Could not write to file." << std::endl;
-//        }
-//        current = current.getNext();
 //    }
-//}
-//
-//
-//
-////D command (delivery)
-////creating purchase order based on comparison of have and want values
-////file name?
-//void Inventory::delivery(order file){
-//
-//
-//}
-//
-//
-////R command
-////file name?
-////return books if we have more than needed
-//void Inventory::returnBooks(invoiceFile){
-//    std::ofstream outf(invoiceFile);
-//    while(current.getNext() != nullptr){
-//        if (outf){
-//            outf << title << "," << (have - want) << std::endl;
-//            have = want;
-//        }
-//        else{
-//            std::cerr << "Could not write to file." << std::endl;
-//        }
-//        current = current.getNext();
-//    }
-//
-//
-//}
+
+
+}
+
+//R command
+//file name?
+//return books if we have more than needed
+void Inventory::returnBooks(std::string invoiceFile){
+
+    std::ofstream outf(invoiceFile);
+
+    if(outf.is_open()){
+
+
+        Book *currNode = bookListStart;
+        while (currNode != nullptr) {
+            std::cout<< "hello" << std::endl;
+
+            if ((currNode->getHave()) > (currNode->getWant())) {
+                outf << currNode->getTitle() << "*" << (currNode->getHave() - currNode->getWant()) << "\t";
+                currNode->setHave(currNode->getWant());
+                currNode = currNode->getNext();
+            }else{
+                currNode = currNode->getNext();
+
+            }
+
+        }
+        outf.close();
+    }
+    else {
+        std::cout<< "can't write to file."<< std::endl;
+    }
+}
 
 
 void Inventory::quit(){

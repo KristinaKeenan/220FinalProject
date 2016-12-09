@@ -5,16 +5,18 @@
 #include "WaitList.h"
 
 WaitList::WaitList(){
-    this->currCapacity = 5;
-    this->currItemCount = 0;
-    this->array = new std::string[currCapacity];
+    currCapacity = 5;
+    currItemCount = 0;
+    array = new std::string[currCapacity];
 
 
 }
 
-WaitList::ArrayList(const WaitList& stackToCopy){
+
+
+WaitList::WaitList(const WaitList& stackToCopy){
     this->currCapacity = stackToCopy.currCapacity;
-    this->currItemCont = stackToCopy.currItemCount;
+    this->currItemCount = stackToCopy.currItemCount;
 
     //to make a new array and then put all of the data in it
     this->array= new std::string[currCapacity];
@@ -29,39 +31,35 @@ WaitList::~WaitList(){
 }
 
 void WaitList::add(std::string personToAdd){
-
     int tempInt = currItemCount;
 
     if(currItemCount == currCapacity) {
         doubleCapacity();
     }
+
+
     array[tempInt] = personToAdd;
-
     currItemCount++;
-
 }
 
+//TEST
 std::string WaitList::removeFront(){
 
-    tempString = array[0];
+    std::string tempString = array[0];
 
     currItemCount--;
 
-    for(int i = 1; i < currItemCount; i++){
-        array[i-1] = array[i];
+    for (int i = 0; i< currItemCount; i++){
+        array[i]=array[i+1];
     }
 
     return tempString;
-
-
-
-
 
 }
 
 void WaitList::doubleCapacity(){
 
-    int* tempArray = new int[currCapacity*2];
+    std::string *tempArray = new std::string[currCapacity*2];
 
 
     for(int i = 0; i<currItemCount; i++){
@@ -81,13 +79,17 @@ void WaitList::doubleCapacity(){
 
 }
 
+
+
+
 std::string WaitList::printWaitList(){
-    std::string arrayString;
+    std::string arrayString = "";
+
     for (int i = 0; i< currItemCount; i++){
-               arrayString = arrayString + array[i];
+
+        std::cout<< array[i]<< std::endl;
+
+        arrayString = arrayString+ " " + " " +array[i];
     }
-
-    std::cout<< arrayString<< std::endl;
-
-
+    return arrayString;
 }

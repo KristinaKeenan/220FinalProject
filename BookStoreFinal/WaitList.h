@@ -5,6 +5,8 @@
 #ifndef BOOKSTOREFINAL_WAITLIST_H
 #define BOOKSTOREFINAL_WAITLIST_H
 
+#include <iostream>
+#include <string>
 
 class WaitList {
 
@@ -31,6 +33,9 @@ public:
     //Destructor
     ~WaitList();
 
+    WaitList&operator=(const WaitList& waitListToAssign);
+
+
     //appends the new item to the end of the arrayList
     void add(std::string personToAdd);
 
@@ -38,9 +43,7 @@ public:
 
     std::string printWaitList();
 
-
-
-
+//    void printWaitList();
 
 };
 

@@ -9,7 +9,7 @@ Book::Book(std::string title, int have, int want){
     this->title = title;
     this->have = have;
     this->want = want;
-    waitList = nullptr;
+    waitList = new WaitList();
     next = nullptr;
 }
 
@@ -19,7 +19,7 @@ Book::Book(const Book& bookToCopy){
     this->title = bookToCopy.title;
     this->have = bookToCopy.have;
     this->want = bookToCopy.want;
-//    this->waitList = int waitList;
+    waitList = new WaitList;
     this->next = bookToCopy.next;
 }
 

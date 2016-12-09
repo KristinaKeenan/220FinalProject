@@ -7,15 +7,19 @@ using namespace std;
 
 int main() {
 
-    Inventory* inventory = new Inventory;
-
+    Inventory* inventory = new Inventory();
     inventory->add("title");
+    inventory->printBookList();
+//    inventory->add("title5");
+    inventory->add("crab");
+//    inventory->sell("bob");
+//    inventory->printBookList();
 
 
 
 
 
-//
+
 //    bool toContinue = true;
 //
 //    while (toContinue != false) {
@@ -50,28 +54,25 @@ int main() {
 //            std::string book;
 //            std::cout << "enter the inquired title: ";
 //            std::getline(std::cin, book);
-//            std::cout << "Book info for: " << book << std::endl;
-//
-//            //print info for the book
+//            inventory->titleInfo(book);
 //
 //        } else if (command == "L") {
 //            std::cout << "LIST" << std::endl;
-//
-//            //print out all of the inventory
+//            inventory->printBookList();
 //
 //        } else if (command == "A") {
 //            std::cout << "ADD" << std::endl;
-//
-//            //prompt for initall want and have valie
-//            //if title already exists, inform user and print the info
-//            //else add the title
+//            std::string book;
+//            std::cout << "enter the book title: ";
+//            std::getline(std::cin, book);
+//            inventory->add(book);
 //
 //        } else if (command == "M") {
 //            std::cout << "MODIFY" << std::endl;
 //            std::string book;
 //            std::cout << "enter the title you want to modify: ";
 //            std::getline(std::cin, book);
-//            std::cout << "Book info for: " << book << std::endl;
+//            inventory->modify(book);
 //
 //
 //        } else if (command == "S") {
@@ -81,29 +82,29 @@ int main() {
 //            std::getline(std::cin, book);
 //            std::cout << "Sell: " << book << std::endl;
 //
-//            //decrese the count for the specific title by 1
-//            // if the title doesn't est yet, add
-//            // if title is sold out (or didn't exist), prompt the
-//            //user for buyers name and enter then on wait list
+//            inventory->sell(book);
+//
+//
 //        } else if (command == "O") {
 //            std::cout << "ORDER" << std::endl;
 //
-//            //Create a bulk purchase order for additional
-//            // books based on a comparison of the have and want
-//            // values in the inventory. For each book, enough books
-//            // should be ordered so that, when the order is received,
-//            // the have value will be equal to the want value.
+//            inventory->createOrder("InventoryList");
 //
 //        } else if (command == "D") {
 //            std::cout << "DELIVERY" << std::endl;
-//            //file stuff
+//
+//            inventory->delivery("InventoryList");
 //
 //
 //        } else if (command == "R") {
 //            std::cout << "RETURN" << std::endl;
 //
+////            inventory->returnBooks(some file)
+//
+//
 //        } else if (command == "Q") {
 //            std::cout << "QUIT" << std::endl;
+//            inventory->quit();
 //            toContinue = false;
 //
 //        } else {
