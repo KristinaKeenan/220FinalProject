@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="BookStoreFinal"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BookStoreFinal">
+				<Option output="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/BookStoreFinal" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.3.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 BookStoreFinal"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BookStoreFinal/fast">
+				<Option output="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/BookStoreFinal" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/7.3.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 BookStoreFinal/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/Book.cpp">
+			<Option target="BookStoreFinal"/>
+		</Unit>
+		<Unit filename="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/Book.h">
+			<Option target="BookStoreFinal"/>
+		</Unit>
+		<Unit filename="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/Inventory.cpp">
+			<Option target="BookStoreFinal"/>
+		</Unit>
+		<Unit filename="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/Inventory.h">
+			<Option target="BookStoreFinal"/>
+		</Unit>
+		<Unit filename="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/WaitList.cpp">
+			<Option target="BookStoreFinal"/>
+		</Unit>
+		<Unit filename="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/WaitList.h">
+			<Option target="BookStoreFinal"/>
+		</Unit>
+		<Unit filename="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/main.cpp">
+			<Option target="BookStoreFinal"/>
+		</Unit>
+		<Unit filename="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

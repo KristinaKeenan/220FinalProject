@@ -68,6 +68,11 @@ public:
 
     Book* setNext(Book* newNext);
 
+    int deliveryWL(int have);
+
+    int getWLcic();
+
+    std::string* getArray();
 
 };
 

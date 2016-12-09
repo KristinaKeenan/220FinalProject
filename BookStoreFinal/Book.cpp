@@ -89,3 +89,19 @@ Book* Book::getNext(){
 Book* Book::setNext(Book* newNext){
     next = newNext;
 }
+
+
+int Book::deliveryWL(int have){ 
+    std::cout<<title<<" is on hold for:"<<std::endl; 
+    int dWL = waitList->deliveryWaitList(have); 
+    std::cout<<std::endl; 
+    return dWL; 
+}
+
+int Book::getWLcic() {
+    return waitList->getCIC();
+}
+
+std::string* Book::getArray(){
+    return waitList->nameArray();
+}

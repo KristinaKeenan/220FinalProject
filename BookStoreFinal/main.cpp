@@ -11,13 +11,15 @@ int main() {
     inventory->add("title");
     inventory->printBookList();
 //    inventory->add("title5");
-    inventory->add("crab");
+  //  inventory->add("crab");
 //    inventory->sell("bob");
 //    inventory->printBookList();
+    inventory->printBookList();
 
 
+inventory->delivery();
 
-
+    inventory->printBookList();
 
 
 //    bool toContinue = true;

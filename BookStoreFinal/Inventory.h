@@ -68,13 +68,13 @@ public:
 //    //D command (delivery)
 //    //creating purchase order based on comparison of have and want values
 //    //file name?
-    void delivery(std::string orderFile);
+    void delivery();
 //
 //
 //    //R command
 //    //file name?
 //    //return books if we have more than needed
-    void returnBooks(std::string invoiceFile);
+    void returnBooks();
 
 
     //Q command

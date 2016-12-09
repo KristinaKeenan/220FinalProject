@@ -43,7 +43,14 @@ public:
 
     std::string printWaitList();
 
+
+    int deliveryWaitList(int have);
+
 //    void printWaitList();
+
+    int getCIC();
+
+    std::string* nameArray();
 
 };
 

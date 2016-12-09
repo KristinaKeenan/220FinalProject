@@ -93,3 +93,25 @@ std::string WaitList::printWaitList(){
     }
     return arrayString;
 }
+
+
+int WaitList::deliveryWaitList(int have){ 
+    int haveTemp = have; 
+    if(currItemCount>0){ 
+        for(int i = 0; i < have; i++){ 
+            std::cout<<array[i]<<std::endl; 
+            removeFront(); 
+            have--; 
+        } 
+    } 
+    return haveTemp;
+      }
+
+
+int WaitList::getCIC() {
+    return currItemCount;
+}
+
+std::string* WaitList::nameArray() {
+    return array;
+}
