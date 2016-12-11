@@ -237,8 +237,6 @@ void Inventory::modify(std::string bookToModify){
 //S command (sell)
 void Inventory::sell(std::string bookToSell){
 
-    std::cout<< "SELL"<<std::endl;
-
 
     //Decrease the count for the specified title by 1.
     // If the title doesn't exist yet, it should be added.
@@ -393,56 +391,56 @@ void Inventory::quit(){
 
 }
 
-
-void Inventory::delivery(){
-    string line;
-    string title = "";
-    int have;
-    ifstream myfile ("/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/Delivery.txt");
-    if (myfile.is_open())
-    {
-        while ( getline (myfile,line) )
-        {
-            for(int i = 0; i < line.length(); i++){
-                if(line[i]=='*'){
-                    for(int j = 0; j < i; j++){
-                        title = title+line[j];
-                    }
-                    have = int(line[i+1]);
-                }
-            }
-            std::cout<<"Title: "<<title<<", Have: "<<have<<std::endl;
-
-            Book* temp = bookListStart;
-
-            while(temp != nullptr){
-                if(title == temp->getTitle()){
-                    have = bookListStart->deliveryWL(have);
-                    temp->setHave(temp->getHave()+have);
-                    temp = nullptr;
-                }
-                else if(title < temp->getTitle()){
-                    Book* newBook = new Book(title,have,0);
-                    //      add(newBook,have);
-                }
-                else{
-                    temp = temp->getNext();
-                }
-            }
-
-
-        }
-        myfile.close();
-    }
-
-    else cout << "Unable to open file";
-
-
-
-    myfile.close();
-
-
-
-}
+//
+//void Inventory::delivery(){
+//    string line;
+//    string title = "";
+//    int have;
+//    ifstream myfile ("/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/Delivery.txt");
+//    if (myfile.is_open())
+//    {
+//        while ( getline (myfile,line) )
+//        {
+//            for(int i = 0; i < line.length(); i++){
+//                if(line[i]=='*'){
+//                    for(int j = 0; j < i; j++){
+//                        title = title+line[j];
+//                    }
+//                    have = int(line[i+1]);
+//                }
+//            }
+//            std::cout<<"Title: "<<title<<", Have: "<<have<<std::endl;
+//
+//            Book* temp = bookListStart;
+//
+//            while(temp != nullptr){
+//                if(title == temp->getTitle()){
+//                    have = bookListStart->deliveryWL(have);
+//                    temp->setHave(temp->getHave()+have);
+//                    temp = nullptr;
+//                }
+//                else if(title < temp->getTitle()){
+//                    Book* newBook = new Book(title,have,0);
+//                          add(newBook->getTitle());
+//                }
+//                else{
+//                    temp = temp->getNext();
+//                }
+//            }
+//
+//
+//        }
+//        myfile.close();
+//    }
+//
+//    else cout << "Unable to open file";
+//
+//
+//
+//    myfile.close();
+//
+//
+//
+//}
 
 

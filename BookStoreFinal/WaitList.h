@@ -44,9 +44,7 @@ public:
     std::string printWaitList();
 
 
-    int deliveryWaitList(int have);
-
-//    void printWaitList();
+//    int deliveryWaitList(int have);
 
     int getCIC();
 
