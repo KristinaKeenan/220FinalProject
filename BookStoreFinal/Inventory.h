@@ -22,26 +22,33 @@ private:
     Book* bookListEnd;
 
 
-    void parseLine(std::string line);
+    //to go through each line for the close function
+    void deliveryParseLine(std::string line);
 
 
-public:
+    //to go through each line for the open function
+    void Inventory::startFuncParseLine(std::string line);
+
+
+
+        public:
 
     //constructor
     Inventory();
 
 
 //    //copy constructor
-//Inventory::Inventory(const Inventory& inventoryToCopy) {
+//    Inventory::Inventory(const Inventory& inventoryToCopy);
 
 
 
 //    //assignment operator
-    Inventory& operator=(const Inventory& inventoryToAssign);
+//    Inventory& operator=(const Inventory& inventoryToAssign);
 
 
     //destructor
-    ~Inventory();
+//    void ~Inventory();
+
 
 
 
@@ -52,7 +59,7 @@ public:
     void printBookList();
 
     //A command
-    void add(std::string bookToAdd);
+    void add(std::string bookToAdd, int have, int want);
 
 
     //M command
@@ -87,11 +94,13 @@ public:
     void quit();
 
 
-//    void static parseLine(std::string line);
+
+    //to read through inventory.txt and open it and add to the inventory
+    void Inventory::startInventory();
 
 
 
-};
+    };
 
 
 

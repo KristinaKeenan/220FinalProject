@@ -7,17 +7,11 @@ using namespace std;
 
 int main() {
 
+
     Inventory* inventory = new Inventory();
-
-    inventory->add("test");
-    inventory->add("war");
-    inventory->printBookList();
-
-    inventory->quit();
-
+//    inventory.start
 //
-//    inventory->add("great");
-//    inventory->printBookList();
+
 
 //
 //    bool toContinue = true;

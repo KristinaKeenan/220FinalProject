@@ -16,7 +16,7 @@ Inventory::Inventory() {
 
 }
 
-//
+
 ////copy constructor
 //Inventory::Inventory(const Inventory& inventoryToCopy) {
 //
@@ -46,47 +46,48 @@ Inventory::Inventory() {
 //        }
 //    }
 //}
+//
+//
+////assignment operator
+//Inventory& Inventory::operator=(const Inventory& inventoryToAssign){
+//    if(this != &inventoryToAssign){
+//        while(bookListStart!=nullptr){
+//            Book* temp = bookListStart;
+//            bookListStart = bookListStart->getNext();
+//            delete temp;
+//            temp = nullptr;
+//        }
+//    }
+//
+//    if(inventoryToAssign.bookListStart==nullptr){
+//        this->bookListStart = nullptr;
+//    }
+//    else{
+//        bookListStart = new Book(inventoryToAssign.bookListStart->getTitle(),inventoryToAssign.bookListStart->getHave(),inventoryToAssign.bookListStart->getWant());
+//        Book* currBook = this->bookListStart;
+//        Book* bookToCopy = inventoryToAssign.bookListStart;
+//        while(bookToCopy->getNext()!=nullptr){
+//            bookToCopy-bookToCopy->getNext();
+//            currBook->setNext(new Book(bookToCopy->getTitle(),bookToCopy->getHave(),bookToCopy->getWant()));
+//            currBook = currBook->getNext();
+//        }
+//    }
+//
+//return *this;
+//
+//}
+//
+//
+////destructor
+//Inventory:: ~Inventory() {
+//    while (bookListStart != nullptr){
+//        Book* temp = bookListStart;
+//        bookListStart= bookListStart->getNext();
+//        delete temp;
+//        temp= nullptr;
+//    }
+//}
 
-
-//assignment operator
-Inventory& Inventory::operator=(const Inventory& inventoryToAssign){
-    if(this != &inventoryToAssign){
-        while(bookListStart!=nullptr){
-            Book* temp = bookListStart;
-            bookListStart = bookListStart->getNext();
-            delete temp;
-            temp = nullptr;
-        }
-    }
-
-    if(inventoryToAssign.bookListStart==nullptr){
-        this->bookListStart = nullptr;
-    }
-    else{
-        bookListStart = new Book(inventoryToAssign.bookListStart->getTitle(),inventoryToAssign.bookListStart->getHave(),inventoryToAssign.bookListStart->getWant());
-        Book* currBook = this->bookListStart;
-        Book* bookToCopy = inventoryToAssign.bookListStart;
-        while(bookToCopy->getNext()!=nullptr){
-            bookToCopy-bookToCopy->getNext();
-            currBook->setNext(new Book(bookToCopy->getTitle(),bookToCopy->getHave(),bookToCopy->getWant()));
-            currBook = currBook->getNext();
-        }
-    }
-
-return *this;
-
-}
-
-
-//destructor
-Inventory::~Inventory() {
-    while (bookListStart != nullptr){
-        Book* temp = bookListStart;
-        bookListStart= bookListStart->getNext();
-        delete temp;
-        temp= nullptr;
-    }
-}
 
 
 
@@ -137,7 +138,7 @@ void Inventory::printBookList(){
 
 //A command
 //kk
-void Inventory::add(std::string bookToAdd){
+void Inventory::add(std::string bookToAdd, int have, int want){
 
         Book* temp = bookListStart;
         Book* temp2 = bookListStart;
@@ -330,7 +331,7 @@ void Inventory::sell(std::string bookToSell){
 
         std::cout << "Book doesn't exist yet. Adding to Inventory...." << std::endl;
         std::cout << "Set have value to 0 and want value to 1." << std::endl;
-        add(bookToSell);
+        add(bookToSell, 0,1);
         }
 
     }
@@ -340,32 +341,46 @@ void Inventory::sell(std::string bookToSell){
 
 //R command
 //file name?
-//return books if we have more than needed
 void Inventory::returnBooks(){
-    string line;
-    string title = "";
-    int have;
-    ofstream myfile ("returnList.txt");
-    if (myfile.is_open()) {
-        Book* temp = bookListStart;
-        while(temp!= nullptr){
-            int difference = temp->getHave()-temp->getWant();
-            if(difference>0){
-                myfile<<"Title: "<<temp->getTitle()<<", Number returned: "<<temp->getHave()-difference << std::endl;
-                temp->setHave(difference);
-                temp->setWant(0);
+
+    //Write a return invoice to a file specifying all books to be returned.
+    // For each book, copies should be returned if the have value is higher
+    // than the want value. The system should change the have value to equal
+    // the want value, and the output file should then give the list of books
+    // to take off the shelf and return.
+
+    ofstream outf ("returnList.txt");
+    if (outf.is_open()) {
+
+        Book *currNode = bookListStart;
+        while (currNode != nullptr) {
 
 
+            if (currNode->getHave()> currNode->getWant()) {
+
+
+                //the amount to add for the have value to be big enough so that the have value will be equal to the want value;
+                int changeNum = currNode->getHave() - currNode->getWant();
+                currNode->setHave(changeNum);
+
+                outf << currNode->getTitle()<<','<< currNode->getWant() << ','<< currNode->getHave()<< "\n";
+
+            } else {
+
+                outf << currNode->getTitle()<<','<< currNode->getWant() << ','<< currNode->getHave()<< "\n";
             }
-            temp = temp->getNext();
+
+            currNode = currNode->getNext();
+
         }
+        outf.close();
+    } else {
+        std::cout << "can't write to file." << std::endl;
     }
-    myfile.close();
 }
 
 
 void Inventory::quit() {
-
 
     std::ofstream outf("Inventory.txt");
     if (outf.is_open()) {
@@ -386,7 +401,7 @@ void Inventory::quit() {
 }
 
 
-    void Inventory::parseLine(std::string line) {
+    void Inventory::deliveryParseLine(std::string line) {
         if (line.length() > 0) {
             std::stringstream splitter(line);
             std::string title, want, have;
@@ -400,7 +415,7 @@ void Inventory::quit() {
             int wantValue = atoi(want.c_str());
             //add books to your store
 
-//        add(title,haveValue,wantValue);
+        add(title,haveValue,wantValue);
 
 
         }
@@ -416,7 +431,7 @@ void Inventory::quit() {
             while (infile) {
                 std::string strInput;
                 getline(infile, strInput);
-                parseLine(strInput);
+                deliveryParseLine(strInput);
             }
         } else {
             std::cerr << "File not found." << std::endl;
@@ -459,3 +474,40 @@ void Inventory::quit() {
         }
     }
 
+
+
+void Inventory::startFuncParseLine(std::string line) {
+    if (line.length() > 0) {
+        std::stringstream splitter(line);
+        std::string title, want, have;
+        getline(splitter, title, ',');
+        getline(splitter, want, ',');
+        getline(splitter, have, ',');
+
+        //now make objects
+
+        int haveValue = atoi(have.c_str());
+        int wantValue = atoi(want.c_str());
+
+        //add books to your store
+
+        add(title,haveValue,wantValue);
+    }
+}
+
+
+void Inventory::startInventory() {
+    //CreateOrders.txt
+
+    std:ifstream infile("Inventory.txt");
+
+    if (infile) {
+        while (infile) {
+            std::string strInput;
+            getline(infile, strInput);
+            startFuncParseLine(strInput);
+        }
+    } else {
+        std::cerr << "File not found." << std::endl;
+    }
+}
