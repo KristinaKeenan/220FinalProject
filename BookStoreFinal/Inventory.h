@@ -22,6 +22,9 @@ private:
     Book* bookListEnd;
 
 
+    void parseLine(std::string line);
+
+
 public:
 
     //constructor
@@ -68,7 +71,9 @@ public:
 //    //D command (delivery)
 //    //creating purchase order based on comparison of have and want values
 //    //file name?
-    void delivery();
+//    void delivery();
+    void delivery(std::string OrderFile);
+
 //
 //
 //    //R command
@@ -77,10 +82,12 @@ public:
     void returnBooks();
 
 
-    //Q command
+
+        //Q command
     void quit();
 
 
+//    void static parseLine(std::string line);
 
 
 

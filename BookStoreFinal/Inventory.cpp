@@ -138,18 +138,29 @@ void Inventory::printBookList(){
 //A command
 //kk
 void Inventory::add(std::string bookToAdd){
+
         Book* temp = bookListStart;
         Book* temp2 = bookListStart;
 
+        int size = 0;
+        Book* getAmount = bookListStart;
+        while (getAmount != nullptr){
+            size ++;
+            getAmount = getAmount->getNext();
+        }
+    std::cout<< "size of the inentory: "<< size<< std::endl;
+
         bool notAdded = true;
         if (bookListStart== nullptr){
+
+            std::cout<< "this is first in the intenvoty"<< std:: endl;
+
             int want;
             int have;
             std::cout<<"How many books do you have?"<<std::endl;
             cin>>have;
 
             std::cout<<"How many books do you want?"<<std::endl;
-
 
 
             cin>>want;
@@ -172,12 +183,21 @@ void Inventory::add(std::string bookToAdd){
 
                     std::cout << "Book already exists." << std::endl;
 
-                    //delete book
 
+                    //delete
+
+//                    while (bookListStart != nullptr){
+//                        Book* counter = bookListStart;
+//                        bookListStart= bookListStart->getNext();
+//                        delete counter;
+//                        counter= nullptr;
+//                    }
 
                     notAdded = false;
 
                 } else if (temp->getTitle() < bookToAdd) {
+                    std::cout<< "temp->getTitle () < bookTOAdd... book to add is later in alphabet"<< std:: endl;
+
                     temp2=temp;
 
                     if(temp->getNext()==nullptr){
@@ -185,8 +205,13 @@ void Inventory::add(std::string bookToAdd){
                     }else {
                         temp = temp->getNext();
                     }
+
 //                    notAdded= false;
+
+
                 } else if (temp->getTitle() > bookToAdd) {
+                    std::cout<< "temp->getTitle () > bookTOAdd... bookToAdd is earlier in alphabet"<< std:: endl;
+
 
                     temp2->setNext(newBook);
 
@@ -196,8 +221,13 @@ void Inventory::add(std::string bookToAdd){
                 else{
                     std::cout<<"ERROR"<<std::endl;
                 }
+
             }
+
         }
+
+
+
 }
 
 
@@ -308,28 +338,6 @@ void Inventory::sell(std::string bookToSell){
 
 
 
-
-
-//O command
-//file name?
-void Inventory::createOrder(std::string InventoryList){
-
-    std::ofstream outf(InventoryList);
-    if(outf.is_open()){
-
-        Book *currNode = bookListStart;
-        while (currNode != nullptr) {
-            if ((currNode->getWant()) > (currNode->getHave())) {               // <- new code
-                outf << currNode->getTitle() << "*" << (currNode->getWant() - currNode->getHave()) << "\t";
-                currNode = currNode->getNext();
-            }
-        }
-        outf.close();
-    }
-    else {
-        std::cout<< "can't write to file."<< std::endl;
-    }
-}
 //R command
 //file name?
 //return books if we have more than needed
@@ -343,7 +351,7 @@ void Inventory::returnBooks(){
         while(temp!= nullptr){
             int difference = temp->getHave()-temp->getWant();
             if(difference>0){
-                myfile << "Title: "<<temp->getTitle()<<", Number returned: "<<temp->getHave()-difference << std::endl;
+                myfile<<"Title: "<<temp->getTitle()<<", Number returned: "<<temp->getHave()-difference << std::endl;
                 temp->setHave(difference);
                 temp->setWant(0);
 
@@ -351,96 +359,103 @@ void Inventory::returnBooks(){
             }
             temp = temp->getNext();
         }
-
-
     }
-
-
-
     myfile.close();
-
 }
 
 
-void Inventory::quit(){
-
-    string line;
-    string title = "";
-    int have;
-    ofstream myfile ("Inventory.txt");
-    if (myfile.is_open()) {
-        Book* temp = bookListStart;
-        while(temp!= nullptr){
-            std::string* waitList = temp->getArray();
-            myfile << "Title: "<<temp->getTitle()<<", Have: "<<temp->getHave()<<", Want: "<<temp->getWant()<<"Waitlist: ";
-            for(int i = 0; i < temp->getWLcic(); i++){
-                myfile<<waitList[i]<<", ";
-            }
-            myfile<<std::endl;
+void Inventory::quit() {
 
 
-            temp = temp->getNext();
+    std::ofstream outf("Inventory.txt");
+    if (outf.is_open()) {
+
+        Book *currNode = bookListStart;
+        while (currNode != nullptr) {
+
+
+            outf << currNode->getTitle() << "," << currNode->getWant() << "," << currNode->getHave() << "\n";
+            currNode = currNode->getNext();
+
         }
+        outf.close();
+    } else {
+        std::cout << "can't write to file." << std::endl;
+    }
+
+}
 
 
+    void Inventory::parseLine(std::string line) {
+        if (line.length() > 0) {
+            std::stringstream splitter(line);
+            std::string title, want, have;
+            getline(splitter, title, ',');
+            getline(splitter, want, ',');
+            getline(splitter, have, ',');
+
+            //now make objects
+
+            int haveValue = atoi(have.c_str());
+            int wantValue = atoi(want.c_str());
+            //add books to your store
+
+//        add(title,haveValue,wantValue);
+
+
+        }
+    }
+
+
+    void Inventory::delivery(std::string fileName) {
+        //CreateOrders.txt
+
+        std::ifstream infile(fileName);
+
+        if (infile) {
+            while (infile) {
+                std::string strInput;
+                getline(infile, strInput);
+                parseLine(strInput);
+            }
+        } else {
+            std::cerr << "File not found." << std::endl;
+        }
     }
 
 
 
-    myfile.close();
+//O command
+//file name?
+    void Inventory::createOrder(std::string InventoryList) {
 
-}
+        //CrateOrders.txt
 
-//
-//void Inventory::delivery(){
-//    string line;
-//    string title = "";
-//    int have;
-//    ifstream myfile ("/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/Delivery.txt");
-//    if (myfile.is_open())
-//    {
-//        while ( getline (myfile,line) )
-//        {
-//            for(int i = 0; i < line.length(); i++){
-//                if(line[i]=='*'){
-//                    for(int j = 0; j < i; j++){
-//                        title = title+line[j];
-//                    }
-//                    have = int(line[i+1]);
-//                }
-//            }
-//            std::cout<<"Title: "<<title<<", Have: "<<have<<std::endl;
-//
-//            Book* temp = bookListStart;
-//
-//            while(temp != nullptr){
-//                if(title == temp->getTitle()){
-//                    have = bookListStart->deliveryWL(have);
-//                    temp->setHave(temp->getHave()+have);
-//                    temp = nullptr;
-//                }
-//                else if(title < temp->getTitle()){
-//                    Book* newBook = new Book(title,have,0);
-//                          add(newBook->getTitle());
-//                }
-//                else{
-//                    temp = temp->getNext();
-//                }
-//            }
-//
-//
-//        }
-//        myfile.close();
-//    }
-//
-//    else cout << "Unable to open file";
-//
-//
-//
-//    myfile.close();
-//
-//
-//
-//}
+        std::ofstream outf(InventoryList);
+        if (outf.is_open()) {
 
+            Book *currNode = bookListStart;
+            while (currNode != nullptr) {
+
+
+                if ((currNode->getWant()) > (currNode->getHave())) {
+                    //the amount to add for the have value to be big enough so that the have value will be equal to the want value;
+                    int changeNum = currNode->getWant() - currNode->getHave();
+
+                    outf << currNode->getTitle() << "," << currNode->getWant() << ","
+                         << (currNode->getHave() + changeNum) << "\n";
+
+                } else {
+
+                    outf << currNode->getTitle() << "," << currNode->getWant() << "," << currNode->getHave() << "\n";
+                }
+
+                currNode = currNode->getNext();
+
+            }
+            outf.close();
+        } else {
+            std::cout << "can't write to file." << std::endl;
+        }
+    }
 
