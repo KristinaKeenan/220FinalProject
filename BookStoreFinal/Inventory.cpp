@@ -111,27 +111,28 @@ void Inventory::titleInfo(std::string book){
 }
 
 
-
 //L command
-void Inventory::printBookList(){
 
-    std::cout<<"Book List: "<<std::endl;
-
+void Inventory::printBookList() {
     Book* temp = bookListStart;
 
-    while(temp!=nullptr){
-        if (temp->getHave()== 0){
-            std::cout<< temp->getTitle()<< " SOLD OUT" <<std::endl;
-            temp=temp->getNext();
-
-        }else{
-            std::cout<< "Title: "<<temp->getTitle()<< " Have Value: "<< temp->getHave()<< " Want Value: " << temp->getWant()<<std::endl;
-
+    if(temp == nullptr){
+        std::cout<<"No books in the inventory!"<<std::endl;
+    }else{
+        while(temp != nullptr){
+            if(temp->getHave()==0){
+                std::cout<<"SOLD OUT of "<<temp->getTitle()<<std::endl;
+            }
+            else{
+                std::cout<<temp->getHave()<<" copies of "<<temp->getTitle()<<std::endl;
+            }
+        //    std::cout<<temp->getNext()<<std::endl;
             temp = temp->getNext();
         }
 
     }
 
+<<<<<<< Updated upstream
 }
 
 
@@ -150,87 +151,108 @@ void Inventory::add(std::string bookToAdd, int have, int want){
             getAmount = getAmount->getNext();
         }
     std::cout<< "size of the inentory: "<< size<< std::endl;
-
-        bool notAdded = true;
-        if (bookListStart== nullptr){
-
-            std::cout<< "this is first in the intenvoty"<< std:: endl;
-
-            int want;
-            int have;
-            std::cout<<"How many books do you have?"<<std::endl;
-            cin>>have;
-
-            std::cout<<"How many books do you want?"<<std::endl;
-
-
-            cin>>want;
-            Book* newBook = new Book(bookToAdd,have,want);
-            bookListStart = newBook;
-            notAdded = false;
-        } else {
-            int want;
-            int have;
-            std::cout << "How many books do you have?" << std::endl;
-            cin >> have;
-
-            std::cout << "How many books do you want?" << std::endl;
-            cin >> want;
-            Book *newBook = new Book(bookToAdd, have, want);
-
-            while (temp != nullptr && notAdded) {
-
-                if (temp->getTitle() == bookToAdd) {
-
-                    std::cout << "Book already exists." << std::endl;
-
-
-                    //delete
-
-//                    while (bookListStart != nullptr){
-//                        Book* counter = bookListStart;
-//                        bookListStart= bookListStart->getNext();
-//                        delete counter;
-//                        counter= nullptr;
-//                    }
-
-                    notAdded = false;
-
-                } else if (temp->getTitle() < bookToAdd) {
-                    std::cout<< "temp->getTitle () < bookTOAdd... book to add is later in alphabet"<< std:: endl;
-
-                    temp2=temp;
-
-                    if(temp->getNext()==nullptr){
-                        temp->setNext(newBook);
-                    }else {
-                        temp = temp->getNext();
-                    }
-
-//                    notAdded= false;
-
-
-                } else if (temp->getTitle() > bookToAdd) {
-                    std::cout<< "temp->getTitle () > bookTOAdd... bookToAdd is earlier in alphabet"<< std:: endl;
-
-
-                    temp2->setNext(newBook);
-
-                    newBook->setNext(temp);
-                    notAdded = false;
-                }
-                else{
-                    std::cout<<"ERROR"<<std::endl;
-                }
-
-            }
-
-        }
-
-
+=======
+>>>>>>> Stashed changes
 
 }
 
+
+
+////A command
+////kk
+//void Inventory::add(std::string bookToAdd){
+//
+//        Book* temp = bookListStart;
+//        Book* temp2 = bookListStart;
+//
+//        int size = 0;
+//        Book* getAmount = bookListStart;
+//        while (getAmount != nullptr){
+//            size ++;
+//            getAmount = getAmount->getNext();
+//        }
+//    std::cout<< "size of the inentory: "<< size<< std::endl;
+//
+//        bool notAdded = true;
+//        if (bookListStart== nullptr){
+//
+//            std::cout<< "this is first in the intenvoty"<< std:: endl;
+//
+//            int want;
+//            int have;
+//            std::cout<<"How many books do you have?"<<std::endl;
+//            cin>>have;
+//
+//            std::cout<<"How many books do you want?"<<std::endl;
+//
+//
+//            cin>>want;
+//            Book* newBook = new Book(bookToAdd,have,want);
+//            bookListStart = newBook;
+//            notAdded = false;
+//        } else {
+//            int want;
+//            int have;
+//            std::cout << "How many books do you have?" << std::endl;
+//            cin >> have;
+//
+//            std::cout << "How many books do you want?" << std::endl;
+//            cin >> want;
+//            Book *newBook = new Book(bookToAdd, have, want);
+//
+//            while (temp != nullptr && notAdded) {
+//
+//                if (temp->getTitle() == bookToAdd) {
+//
+//                    std::cout << "Book already exists." << std::endl;
+//
+//
+//                    //delete
+//
+////                    while (bookListStart != nullptr){
+////                        Book* counter = bookListStart;
+////                        bookListStart= bookListStart->getNext();
+////                        delete counter;
+////                        counter= nullptr;
+////                    }
+//
+//                    notAdded = false;
+//
+//                } else if (temp->getTitle() < bookToAdd) {
+//                    std::cout<< "temp->getTitle () < bookTOAdd... book to add is later in alphabet"<< std:: endl;
+//
+//                    temp2=temp;
+//
+//                    if(temp->getNext()==nullptr){
+//                        temp->setNext(newBook);
+//                    }else {
+//                        temp = temp->getNext();
+//                    }
+//
+////                    notAdded= false;
+//
+//
+//                } else if (temp->getTitle() > bookToAdd) {
+//                    std::cout<< "temp->getTitle () > bookTOAdd... bookToAdd is earlier in alphabet"<< std:: endl;
+//
+//
+//                    temp2->setNext(newBook);
+//
+//                    newBook->setNext(temp);
+//                    notAdded = false;
+//                }
+//                else{
+//                    std::cout<<"ERROR"<<std::endl;
+//                }
+//
+//            }
+//
+//        }
+//
+//
+//
+//}
+//
 
 
 
@@ -331,7 +353,11 @@ void Inventory::sell(std::string bookToSell){
 
         std::cout << "Book doesn't exist yet. Adding to Inventory...." << std::endl;
         std::cout << "Set have value to 0 and want value to 1." << std::endl;
+<<<<<<< Updated upstream
         add(bookToSell, 0,1);
+=======
+        add(bookToSell,0,1);
+>>>>>>> Stashed changes
         }
 
     }
@@ -474,6 +500,7 @@ void Inventory::quit() {
         }
     }
 
+<<<<<<< Updated upstream
 
 
 void Inventory::startFuncParseLine(std::string line) {
@@ -509,5 +536,78 @@ void Inventory::startInventory() {
         }
     } else {
         std::cerr << "File not found." << std::endl;
+=======
+void Inventory::add(std::string bookToAdd, int have, int want) {
+    Book* previousBook = bookListStart;
+    Book* currentBook = bookListStart;
+    Book* newBook = new Book(bookToAdd,have,want);
+    bool notEnd = true;
+
+    //if there are no books in the list, add the new book
+    if(bookListStart == nullptr){
+        bookListStart = newBook;
+        bookListEnd = newBook;
+    }else {
+
+        //while there are still books to loop through in the inventory
+        while (currentBook != nullptr && notEnd) {
+
+            //if the title of the newBook is the same title as the current book
+            if (bookToAdd == currentBook->getTitle()) {
+                currentBook->setHave(currentBook->getHave() + have);
+                currentBook->setWant(currentBook->getWant() + want);
+
+                delete newBook;
+                notEnd = false;
+
+            }
+                //if the title of the newBook comes after the current book in the alphabet
+            else if (bookToAdd > currentBook->getTitle()) {
+                std::cout<<"pass1"<<std::endl;
+                previousBook = currentBook;
+
+                if(currentBook->getNext() != nullptr) {
+                    currentBook = currentBook->getNext();
+                   // previousBook = previousBook->getNext();
+
+                }
+                else{
+                    currentBook->setNext(newBook);
+                    bookListEnd = newBook;
+                    notEnd = false;
+                }
+
+
+            }
+                //if the title of the newBook comes before the current book in the alphabet
+            else if (bookToAdd < currentBook->getTitle()) {
+                if(previousBook == bookListStart){
+                    std::cout<<"pass2"<<std::endl;
+
+                    bookListStart = newBook;
+                    newBook-> setNext(previousBook);
+                    if(bookListStart==bookListEnd) {
+                        bookListEnd = previousBook;
+                    }
+                    notEnd = false;
+                }
+                else {
+                    std::cout<<"pass3"<<std::endl;
+
+                    previousBook->setNext(newBook);
+                    std::cout<<"previous book: "<<previousBook->getTitle()<<std::endl;
+                    newBook->setNext(currentBook);
+
+                    notEnd = false;
+                }
+            } else {
+                std::cout << "ERROR adding book" << std::endl;
+            }
+            bookListEnd->setNext(nullptr);
+
+            std::cout<<bookListEnd<<std::endl;
+
+        }
+>>>>>>> Stashed changes
     }
 }

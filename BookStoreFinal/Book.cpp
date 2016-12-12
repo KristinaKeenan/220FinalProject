@@ -9,8 +9,8 @@ Book::Book(std::string title, int have, int want){
     this->title = title;
     this->have = have;
     this->want = want;
-    waitList = new WaitList();
-    next = nullptr;
+    this->waitList = new WaitList();
+    this->next = nullptr;
 }
 
 
@@ -25,6 +25,22 @@ Book::Book(const Book& bookToCopy){
 
 //assignment operator
 Book& Book::operator=(const Book& bookToAssign){
+
+    if(this != &bookToAssign){
+
+        delete this->next;
+        next = nullptr;
+
+        this->title = bookToAssign.title;
+        this->have = bookToAssign.have;
+        this->want = bookToAssign.want;
+        this->next = bookToAssign.next;
+        this->waitList = bookToAssign.waitList;
+
+    }
+
+
+    return *this;
 
 }
 

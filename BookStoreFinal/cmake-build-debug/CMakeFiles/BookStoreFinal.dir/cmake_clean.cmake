@@ -3,8 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/BookStoreFinal.dir/Inventory.cpp.o"
   "CMakeFiles/BookStoreFinal.dir/Book.cpp.o"
   "CMakeFiles/BookStoreFinal.dir/WaitList.cpp.o"
-  "BookStoreFinal.pdb"
-  "BookStoreFinal"
+  "../BookStoreFinal.pdb"
+  "../BookStoreFinal"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -7,6 +7,30 @@ using namespace std;
 
 int main() {
 
+<<<<<<< Updated upstream
+=======
+    Inventory* inventory = new Inventory();
+
+    inventory->add("test",1,1);
+
+    inventory->printBookList();
+
+    inventory->add("war",2,1);
+
+    inventory->printBookList();
+
+
+    inventory->add("maya",3,1);
+    inventory->printBookList();
+
+    inventory->add("under",5,1);
+    inventory->printBookList();
+
+
+    //  inventory->printBookList();
+
+    inventory->quit();
+>>>>>>> Stashed changes
 
     Inventory* inventory = new Inventory();
 //    inventory.start

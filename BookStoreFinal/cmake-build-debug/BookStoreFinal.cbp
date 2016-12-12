@@ -38,8 +38,8 @@
 				</MakeCommands>
 			</Target>
 			<Target title="BookStoreFinal">
-				<Option output="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/BookStoreFinal" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug"/>
+				<Option output="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/BookStoreFinal" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -59,8 +59,8 @@
 				</MakeCommands>
 			</Target>
 			<Target title="BookStoreFinal/fast">
-				<Option output="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug/BookStoreFinal" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/cmake-build-debug"/>
+				<Option output="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal/BookStoreFinal" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kriskee23/Desktop/220FinalProject/BookStoreFinal"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
