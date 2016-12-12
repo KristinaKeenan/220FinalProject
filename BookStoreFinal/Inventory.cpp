@@ -132,127 +132,11 @@ void Inventory::printBookList() {
 
     }
 
-<<<<<<< Updated upstream
 }
 
 
 
-//A command
-//kk
-void Inventory::add(std::string bookToAdd, int have, int want){
 
-        Book* temp = bookListStart;
-        Book* temp2 = bookListStart;
-
-        int size = 0;
-        Book* getAmount = bookListStart;
-        while (getAmount != nullptr){
-            size ++;
-            getAmount = getAmount->getNext();
-        }
-    std::cout<< "size of the inentory: "<< size<< std::endl;
-=======
->>>>>>> Stashed changes
-
-}
-
-
-
-////A command
-////kk
-//void Inventory::add(std::string bookToAdd){
-//
-//        Book* temp = bookListStart;
-//        Book* temp2 = bookListStart;
-//
-//        int size = 0;
-//        Book* getAmount = bookListStart;
-//        while (getAmount != nullptr){
-//            size ++;
-//            getAmount = getAmount->getNext();
-//        }
-//    std::cout<< "size of the inentory: "<< size<< std::endl;
-//
-//        bool notAdded = true;
-//        if (bookListStart== nullptr){
-//
-//            std::cout<< "this is first in the intenvoty"<< std:: endl;
-//
-//            int want;
-//            int have;
-//            std::cout<<"How many books do you have?"<<std::endl;
-//            cin>>have;
-//
-//            std::cout<<"How many books do you want?"<<std::endl;
-//
-//
-//            cin>>want;
-//            Book* newBook = new Book(bookToAdd,have,want);
-//            bookListStart = newBook;
-//            notAdded = false;
-//        } else {
-//            int want;
-//            int have;
-//            std::cout << "How many books do you have?" << std::endl;
-//            cin >> have;
-//
-//            std::cout << "How many books do you want?" << std::endl;
-//            cin >> want;
-//            Book *newBook = new Book(bookToAdd, have, want);
-//
-//            while (temp != nullptr && notAdded) {
-//
-//                if (temp->getTitle() == bookToAdd) {
-//
-//                    std::cout << "Book already exists." << std::endl;
-//
-//
-//                    //delete
-//
-////                    while (bookListStart != nullptr){
-////                        Book* counter = bookListStart;
-////                        bookListStart= bookListStart->getNext();
-////                        delete counter;
-////                        counter= nullptr;
-////                    }
-//
-//                    notAdded = false;
-//
-//                } else if (temp->getTitle() < bookToAdd) {
-//                    std::cout<< "temp->getTitle () < bookTOAdd... book to add is later in alphabet"<< std:: endl;
-//
-//                    temp2=temp;
-//
-//                    if(temp->getNext()==nullptr){
-//                        temp->setNext(newBook);
-//                    }else {
-//                        temp = temp->getNext();
-//                    }
-//
-////                    notAdded= false;
-//
-//
-//                } else if (temp->getTitle() > bookToAdd) {
-//                    std::cout<< "temp->getTitle () > bookTOAdd... bookToAdd is earlier in alphabet"<< std:: endl;
-//
-//
-//                    temp2->setNext(newBook);
-//
-//                    newBook->setNext(temp);
-//                    notAdded = false;
-//                }
-//                else{
-//                    std::cout<<"ERROR"<<std::endl;
-//                }
-//
-//            }
-//
-//        }
-//
-//
-//
-//}
-//
 
 
 
@@ -353,11 +237,7 @@ void Inventory::sell(std::string bookToSell){
 
         std::cout << "Book doesn't exist yet. Adding to Inventory...." << std::endl;
         std::cout << "Set have value to 0 and want value to 1." << std::endl;
-<<<<<<< Updated upstream
-        add(bookToSell, 0,1);
-=======
         add(bookToSell,0,1);
->>>>>>> Stashed changes
         }
 
     }
@@ -500,43 +380,7 @@ void Inventory::quit() {
         }
     }
 
-<<<<<<< Updated upstream
 
-
-void Inventory::startFuncParseLine(std::string line) {
-    if (line.length() > 0) {
-        std::stringstream splitter(line);
-        std::string title, want, have;
-        getline(splitter, title, ',');
-        getline(splitter, want, ',');
-        getline(splitter, have, ',');
-
-        //now make objects
-
-        int haveValue = atoi(have.c_str());
-        int wantValue = atoi(want.c_str());
-
-        //add books to your store
-
-        add(title,haveValue,wantValue);
-    }
-}
-
-
-void Inventory::startInventory() {
-    //CreateOrders.txt
-
-    std:ifstream infile("Inventory.txt");
-
-    if (infile) {
-        while (infile) {
-            std::string strInput;
-            getline(infile, strInput);
-            startFuncParseLine(strInput);
-        }
-    } else {
-        std::cerr << "File not found." << std::endl;
-=======
 void Inventory::add(std::string bookToAdd, int have, int want) {
     Book* previousBook = bookListStart;
     Book* currentBook = bookListStart;
@@ -568,7 +412,7 @@ void Inventory::add(std::string bookToAdd, int have, int want) {
 
                 if(currentBook->getNext() != nullptr) {
                     currentBook = currentBook->getNext();
-                   // previousBook = previousBook->getNext();
+                    // previousBook = previousBook->getNext();
 
                 }
                 else{
@@ -608,6 +452,48 @@ void Inventory::add(std::string bookToAdd, int have, int want) {
             std::cout<<bookListEnd<<std::endl;
 
         }
->>>>>>> Stashed changes
+
+    }
+}
+
+
+
+
+void Inventory::startInventory() {
+    //CreateOrders.txt
+
+    std:
+    ifstream infile("Inventory.txt");
+
+    if (infile) {
+        while (infile) {
+            std::string strInput;
+            getline(infile, strInput);
+            startFuncParseLine(strInput);
+        }
+    } else {
+        std::cerr << "File not found." << std::endl;
+    }
+
+
+}
+
+
+void Inventory::startFuncParseLine(std::string line) {
+    if (line.length() > 0) {
+        std::stringstream splitter(line);
+        std::string title, want, have;
+        getline(splitter, title, ',');
+        getline(splitter, want, ',');
+        getline(splitter, have, ',');
+
+        //now make objects
+
+        int haveValue = atoi(have.c_str());
+        int wantValue = atoi(want.c_str());
+
+        //add books to your store
+
+        add(title,haveValue,wantValue);
     }
 }

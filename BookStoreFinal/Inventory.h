@@ -27,7 +27,7 @@ private:
 
 
     //to go through each line for the open function
-    void Inventory::startFuncParseLine(std::string line);
+    void startFuncParseLine(std::string line);
 
 
 
@@ -96,7 +96,7 @@ private:
 
 
     //to read through inventory.txt and open it and add to the inventory
-    void Inventory::startInventory();
+    void startInventory();
 
 
 

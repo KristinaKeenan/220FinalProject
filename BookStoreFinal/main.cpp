@@ -7,8 +7,7 @@ using namespace std;
 
 int main() {
 
-<<<<<<< Updated upstream
-=======
+
     Inventory* inventory = new Inventory();
 
     inventory->add("test",1,1);
@@ -30,9 +29,8 @@ int main() {
     //  inventory->printBookList();
 
     inventory->quit();
->>>>>>> Stashed changes
 
-    Inventory* inventory = new Inventory();
+
 //    inventory.start
 //
 
