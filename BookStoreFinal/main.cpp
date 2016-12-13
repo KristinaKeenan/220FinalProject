@@ -96,7 +96,7 @@ int main() {
        } else if (command == "D") {
            std::cout << "DELIVERY" << std::endl;
 
-            inventory->delivery("Delivery.txt");
+            inventory->delivery("CreateOrders.txt");
 
 
         } else if (command == "R") {

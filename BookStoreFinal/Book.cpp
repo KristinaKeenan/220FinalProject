@@ -9,6 +9,7 @@ Book::Book(std::string title, int have, int want){
     this->title = title;
     this->have = have;
     this->want = want;
+    this->waitListCount;
     this->waitList = new WaitList();
     this->next = nullptr;
 }
@@ -82,12 +83,16 @@ std::string Book::setTitle(std::string newTitle){
 
 void Book::addPersonWaitList(std::string personName){
     waitList->add(personName);
+    waitListCount++;
 
 }
 
 //remove person from beginning of waitlist
-void Book::removePersonWaitList(){
-    waitList->removeFront();
+std::string Book::removePersonWaitList(){
+    std::string name = waitList->removeFront();
+    waitListCount--;
+
+    return name;
 
 }
 
@@ -95,6 +100,7 @@ void Book::removePersonWaitList(){
 std::string* Book::getWaitList(){
     waitList->printWaitList();
 }
+
 
 
 
@@ -108,17 +114,14 @@ Book* Book::setNext(Book* newNext){
 }
 
 
-//int Book::deliveryWL(int have){ 
-//    std::cout<<title<<" is on hold for:"<<std::endl; 
-//    int dWL = waitList->deliveryWaitList(have); 
-//    std::cout<<std::endl; 
-//    return dWL; 
-//}
 
-int Book::getWLcic() {
-    return waitList->getCIC();
-}
+int Book::getWaitListCount(){
+    return waitListCount;
+
+};
+
 
 std::string* Book::getArray(){
     return waitList->nameArray();
 }
+

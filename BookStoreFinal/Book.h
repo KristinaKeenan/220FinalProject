@@ -19,6 +19,8 @@ private:
     int have;
     // how many books we need
     int want;
+
+    int waitListCount;
     //names of people who want the book
     WaitList* waitList;
 
@@ -43,6 +45,7 @@ public:
     //destructor
     ~Book();
 
+    int getWaitListCount;
 
     int getHave();
 
@@ -59,7 +62,7 @@ public:
     void addPersonWaitList(std::string personName);
 
     //remove person from beginning of waitlist
-    void removePersonWaitList();
+    std::string removePersonWaitList();
 
     //return the waitlist for the title
     std::string* getWaitList();
@@ -68,9 +71,6 @@ public:
 
     Book* setNext(Book* newNext);
 
-    int deliveryWL(int have);
-//
-    int getWLcic();
 
     std::string* getArray();
 

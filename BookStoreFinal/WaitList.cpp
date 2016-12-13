@@ -13,7 +13,6 @@ WaitList::WaitList(){
 }
 
 
-
 WaitList::WaitList(const WaitList& stackToCopy){
     this->currCapacity = stackToCopy.currCapacity;
     this->currItemCount = stackToCopy.currItemCount;
@@ -95,17 +94,7 @@ std::string WaitList::printWaitList(){
 }
 
 
-//int WaitList::deliveryWaitList(int have){ 
-//    int haveTemp = have; 
-//    if(currItemCount>0){ 
-//        for(int i = 0; i < have; i++){ 
-//            std::cout<<array[i]<<std::endl; 
-//            removeFront(); 
-//            have--; 
-//        } 
-//    } 
-//    return haveTemp;
-//      }
+
 
 
 int WaitList::getCIC() {

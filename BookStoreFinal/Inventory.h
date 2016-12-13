@@ -37,17 +37,17 @@ private:
     Inventory();
 
 
-//    //copy constructor
-//    Inventory::Inventory(const Inventory& inventoryToCopy);
+    //copy constructor
+    Inventory::Inventory(const Inventory& inventoryToCopy);
 
 
 
-//    //assignment operator
-//    Inventory& operator=(const Inventory& inventoryToAssign);
+    //assignment operator
+    Inventory& operator=(const Inventory& inventoryToAssign);
 
 
-    //destructor
-//    void ~Inventory();
+    destructor
+    void ~Inventory();
 
 
 
