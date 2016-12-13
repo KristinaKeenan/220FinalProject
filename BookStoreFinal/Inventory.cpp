@@ -407,7 +407,6 @@ void Inventory::add(std::string bookToAdd, int have, int want) {
             }
                 //if the title of the newBook comes after the current book in the alphabet
             else if (bookToAdd > currentBook->getTitle()) {
-                std::cout<<"pass1"<<std::endl;
                 previousBook = currentBook;
 
                 if(currentBook->getNext() != nullptr) {
@@ -425,31 +424,40 @@ void Inventory::add(std::string bookToAdd, int have, int want) {
             }
                 //if the title of the newBook comes before the current book in the alphabet
             else if (bookToAdd < currentBook->getTitle()) {
-                if(previousBook == bookListStart){
-                    std::cout<<"pass2"<<std::endl;
+                if(previousBook == bookListStart && bookListStart->getNext() == nullptr){
+
+
+                        bookListStart = newBook;
+                        newBook-> setNext(previousBook);
+                        bookListEnd = previousBook;
+                        notEnd = false;
+
+
+
+
+                }
+                    else if(currentBook == bookListStart){
 
                     bookListStart = newBook;
-                    newBook-> setNext(previousBook);
-                    if(bookListStart==bookListEnd) {
-                        bookListEnd = previousBook;
-                    }
+                    newBook->setNext(currentBook);
                     notEnd = false;
+
                 }
                 else {
-                    std::cout<<"pass3"<<std::endl;
 
                     previousBook->setNext(newBook);
-                    std::cout<<"previous book: "<<previousBook->getTitle()<<std::endl;
                     newBook->setNext(currentBook);
 
+
+
                     notEnd = false;
+
                 }
             } else {
                 std::cout << "ERROR adding book" << std::endl;
             }
             bookListEnd->setNext(nullptr);
 
-            std::cout<<bookListEnd<<std::endl;
 
         }
 
