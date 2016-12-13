@@ -46,8 +46,9 @@ Book& Book::operator=(const Book& bookToAssign){
 
 //destructor
 Book::~Book(){
-    //delete waitlist
 
+    delete [] waitList;
+    waitList = nullptr;
 
 
 }

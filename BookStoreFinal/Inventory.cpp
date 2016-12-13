@@ -17,76 +17,76 @@ Inventory::Inventory() {
 }
 
 
-////copy constructor
-//Inventory::Inventory(const Inventory& inventoryToCopy) {
+//copy constructor
+Inventory::Inventory(const Inventory& inventoryToCopy) {
+
+    if (bookListStart != nullptr) {
+
+
 //
-//    if (bookListStart != nullptr) {
-//
-//
-////
-////    //intalize the start of list
-////    this-> bookListStart = nullptr;
-//
-//        if (inventoryToCopy.bookListStart != nullptr) {
-//            std::string bookTitle = inventoryToCopy.bookListStart->getTitle();
-//            this->bookListStart = new Book(bookTitle, 0, 0);
-//
-//            Book *currNode = inventoryToCopy.bookListStart;
-//            Book *copyNode = this->bookListStart;
-//
-//            currNode = currNode->getNext();
-//
-//            while (currNode != nullptr) {
-//                std::string title = currNode->getTitle();
-//                Book *myNode = new Book(title, 0, 0);
-//
-//                copyNode->setNext(myNode);
-//                currNode = currNode->getNext();
-//            }
-//        }
-//    }
-//}
-//
-//
-////assignment operator
-//Inventory& Inventory::operator=(const Inventory& inventoryToAssign){
-//    if(this != &inventoryToAssign){
-//        while(bookListStart!=nullptr){
-//            Book* temp = bookListStart;
-//            bookListStart = bookListStart->getNext();
-//            delete temp;
-//            temp = nullptr;
-//        }
-//    }
-//
-//    if(inventoryToAssign.bookListStart==nullptr){
-//        this->bookListStart = nullptr;
-//    }
-//    else{
-//        bookListStart = new Book(inventoryToAssign.bookListStart->getTitle(),inventoryToAssign.bookListStart->getHave(),inventoryToAssign.bookListStart->getWant());
-//        Book* currBook = this->bookListStart;
-//        Book* bookToCopy = inventoryToAssign.bookListStart;
-//        while(bookToCopy->getNext()!=nullptr){
-//            bookToCopy-bookToCopy->getNext();
-//            currBook->setNext(new Book(bookToCopy->getTitle(),bookToCopy->getHave(),bookToCopy->getWant()));
-//            currBook = currBook->getNext();
-//        }
-//    }
-//
-//return *this;
-//
-//}
-//
-//
-////destructor
-//Inventory:: ~Inventory() {
-//    while (bookListStart != nullptr){
-//        Book* temp = bookListStart;
-//        bookListStart= bookListStart->getNext();
-//        delete temp;
-//        temp= nullptr;
-//    }
-//}
+//    //intalize the start of list
+//    this-> bookListStart = nullptr;
+
+        if (inventoryToCopy.bookListStart != nullptr) {
+            std::string bookTitle = inventoryToCopy.bookListStart->getTitle();
+            this->bookListStart = new Book(bookTitle, 0, 0);
+
+            Book *currNode = inventoryToCopy.bookListStart;
+            Book *copyNode = this->bookListStart;
+
+            currNode = currNode->getNext();
+
+            while (currNode != nullptr) {
+                std::string title = currNode->getTitle();
+                Book *myNode = new Book(title, 0, 0);
+
+                copyNode->setNext(myNode);
+                currNode = currNode->getNext();
+            }
+        }
+    }
+}
+
+
+//assignment operator
+Inventory& Inventory::operator=(const Inventory& inventoryToAssign){
+    if(this != &inventoryToAssign){
+        while(bookListStart!=nullptr){
+            Book* temp = bookListStart;
+            bookListStart = bookListStart->getNext();
+            delete temp;
+            temp = nullptr;
+        }
+    }
+
+    if(inventoryToAssign.bookListStart==nullptr){
+        this->bookListStart = nullptr;
+    }
+    else{
+        bookListStart = new Book(inventoryToAssign.bookListStart->getTitle(),inventoryToAssign.bookListStart->getHave(),inventoryToAssign.bookListStart->getWant());
+        Book* currBook = this->bookListStart;
+        Book* bookToCopy = inventoryToAssign.bookListStart;
+        while(bookToCopy->getNext()!=nullptr){
+            bookToCopy-bookToCopy->getNext();
+            currBook->setNext(new Book(bookToCopy->getTitle(),bookToCopy->getHave(),bookToCopy->getWant()));
+            currBook = currBook->getNext();
+        }
+    }
+
+return *this;
+
+}
+
+
+//destructor
+Inventory::~Inventory() {
+    while (bookListStart != nullptr){
+        Book* temp = bookListStart;
+        bookListStart= bookListStart->getNext();
+        delete temp;
+        temp= nullptr;
+    }
+}
 
 
 
