@@ -10,6 +10,8 @@ int main() {
 
     Inventory* inventory = new Inventory();
 
+    inventory->startInventory();
+
 
    bool toContinue = true;
     std::cout << "Bookstore Data Stuff!" << std::endl;
