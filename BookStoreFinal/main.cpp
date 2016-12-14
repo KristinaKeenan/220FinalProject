@@ -91,7 +91,7 @@ int main() {
         } else if (command == "O") {
             std::cout << "ORDER" << std::endl;
 
-            inventory->createOrder("InventoryList");
+            inventory->createOrder("CreateOrders.txt");
 
        } else if (command == "D") {
            std::cout << "DELIVERY" << std::endl;

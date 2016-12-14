@@ -1,2 +1,6 @@
-test,5,5
-war,5,5
+donald,2,2
+hedda gabler,1,1
+help,4,4
+stop,2,3
+war and peace,5,5
+yes,3,3

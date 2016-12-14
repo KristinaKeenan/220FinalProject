@@ -49,7 +49,7 @@ Inventory::Inventory(const Inventory& inventoryToCopy) {
 
 
 //assignment operator
-Inventory& Inventory::operator=(const Inventory& inventoryToAssign){
+Inventory&Inventory::operator=(const Inventory& inventoryToAssign){
     if(this != &inventoryToAssign){
         while(bookListStart!=nullptr){
             Book* temp = bookListStart;
@@ -79,7 +79,7 @@ return *this;
 
 
 //destructor
-Inventory:: ~Inventory() {
+Inventory::~Inventory() {
     while (bookListStart != nullptr){
         Book* temp = bookListStart;
         bookListStart= bookListStart->getNext();
@@ -145,9 +145,11 @@ void Inventory::printBookList() {
 void Inventory::modify(std::string bookToModify){
     Book *currNode = bookListStart;
 
+
     while (currNode->getTitle()!= bookToModify){
         currNode->getNext();
     }
+
     //display the want and have values.
     std::cout<< "Title: "<< currNode->getTitle()<< std::endl;
     std::cout<< "The want value: " << currNode->getWant()<< std::endl;
@@ -414,6 +416,8 @@ void Inventory::add(std::string bookToAdd, int have, int want) {
     if(bookListStart == nullptr){
         bookListStart = newBook;
         bookListEnd = newBook;
+
+        std::cout<< "this is no books"<< std::endl;
     }else {
 
         //while there are still books to loop through in the inventory
@@ -421,10 +425,13 @@ void Inventory::add(std::string bookToAdd, int have, int want) {
 
             //if the title of the newBook is the same title as the current book
             if (bookToAdd == currentBook->getTitle()) {
+
                 currentBook->setHave(currentBook->getHave() + have);
                 currentBook->setWant(currentBook->getWant() + want);
 
-                delete newBook;
+//                delete newBook;
+                std::cout<< "this is the end" << std::endl;
+
                 notEnd = false;
 
             }
