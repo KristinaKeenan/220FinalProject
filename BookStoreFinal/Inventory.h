@@ -10,6 +10,7 @@
 #include <fstream>
 #include <sstream>
 #include "Book.h"
+using namespace std;
 
 
 class Inventory {
@@ -30,22 +31,23 @@ private:
 
 
 
-public:
+        public:
 
     //constructor
     Inventory();
 
 
     //copy constructor
-    Inventory(const Inventory& inventoryToCopy);
+    Inventory::Inventory(const Inventory& inventoryToCopy);
 
 
-//    //assignment operator
+
+    //assignment operator
     Inventory& operator=(const Inventory& inventoryToAssign);
-//
 
-//    destructor
-    ~Inventory();
+
+    destructor
+    void ~Inventory();
 
 
 
@@ -99,6 +101,9 @@ public:
 
 
     };
+
+
+
 
 
 #endif //BOOKSTOREFINAL_INVENTORY_H

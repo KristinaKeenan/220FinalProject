@@ -9,7 +9,7 @@ Book::Book(std::string title, int have, int want){
     this->title = title;
     this->have = have;
     this->want = want;
-    waitListCount =0;
+    this->waitListCount;
     this->waitList = new WaitList();
     this->next = nullptr;
 }
@@ -116,9 +116,10 @@ Book* Book::setNext(Book* newNext){
 
 
 
-//int Book::getWaitListCount(){
-//    return waitListCount;
-//}
+int Book::getWaitListCount(){
+    return waitListCount;
+
+};
 
 
 std::string* Book::getArray(){
