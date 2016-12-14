@@ -83,7 +83,7 @@ Inventory::~Inventory() {
     while (bookListStart != nullptr){
         Book* temp = bookListStart;
         bookListStart= bookListStart->getNext();
-        delete temp;
+       delete temp;
         temp= nullptr;
     }
 }
@@ -326,6 +326,11 @@ void Inventory::quit() {
 
 
             Book *currNode = bookListStart;
+
+            if(currNode == nullptr){
+
+            }
+
             while (currNode != nullptr) {
 
                 if (currNode->getTitle()== title){
@@ -339,10 +344,13 @@ void Inventory::quit() {
                         currNode->setHave(haveValue);
 
                     }
+                    currNode = currNode->getNext();
+
 
 
                 }else{
                     add(title,haveValue,wantValue);
+                    currNode = currNode->getNext();
 
                 }
 
@@ -417,7 +425,7 @@ void Inventory::add(std::string bookToAdd, int have, int want) {
         bookListStart = newBook;
         bookListEnd = newBook;
 
-        std::cout<< "this is no books"<< std::endl;
+        std::cout<< "there are no books"<< std::endl;
     }else {
 
         //while there are still books to loop through in the inventory
@@ -429,8 +437,7 @@ void Inventory::add(std::string bookToAdd, int have, int want) {
                 currentBook->setHave(currentBook->getHave() + have);
                 currentBook->setWant(currentBook->getWant() + want);
 
-//                delete newBook;
-                std::cout<< "this is the end" << std::endl;
+             //   std::cout<< "this is the end" << std::endl;
 
                 notEnd = false;
 
